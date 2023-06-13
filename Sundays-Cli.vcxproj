@@ -127,7 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="helpers.cpp" />
+    <ClCompile Include="Hash.cpp" />
+    <ClCompile Include="Hasing.cpp" />
     <ClCompile Include="Sundays-Cli.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="macros.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
