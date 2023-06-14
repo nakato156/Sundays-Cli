@@ -127,9 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArbolAVL.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Hash.cpp" />
     <ClCompile Include="Hasing.cpp" />
+    <ClCompile Include="Producto.cpp" />
     <ClCompile Include="Sundays-Cli.cpp" />
   </ItemGroup>
   <ItemGroup>
