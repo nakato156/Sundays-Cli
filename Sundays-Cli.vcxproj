@@ -145,6 +145,7 @@
     <ClInclude Include="Crypt.h" />
     <ClInclude Include="Historial.h" />
     <ClInclude Include="macros.h" />
+    <ClInclude Include="Producto.h" />
     <ClInclude Include="Usuario.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
