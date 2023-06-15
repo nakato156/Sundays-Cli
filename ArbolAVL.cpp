@@ -9,36 +9,36 @@ using namespace std;
 
 template<class T>
 
-class Nodo {
+class Node {  
 public:
-	T elemento;
-	Nodo* izq;
-	Nodo* der;
-	int altura;
+	T elemento; 
+	Node* izq; 
+	Node* der; 
+	int altura; 
 
-	Nodo() {
-		izq = nullptr;
+	Node() {
+		izq = nullptr;  
 		der = nullptr;
-		altura = 0;
+		altura = 0; 
 	}
-	~Nodo() {}
+	~Node() {}
 };
 
 template<class T, class K>
 
 class ArbolAVL {
 private:
-	Nodo<T>* raiz;
-	short (*comparar)(T, T);//puntero a función- en vez de utilizar un functor
-	void(*procesar)(T); //puntero a función
-	void(*procesar2)(K); //puntero a función 
+	Node<T>* raiz;
+	short (*comparar)(T, T);//puntero a función- en vez de utilizar un functor 
+	void(*procesar)(T); //puntero a función 
+	void(*procesar2)(K); //puntero a función  
 
-	int _altura(Nodo<T>* nodo) {
+	int _altura(Node<T>* nodo) { 
 		if (nodo == nullptr) return -1;
 		return nodo->altura;
 	}
 
-	void _actualizarAltura(Nodo<T>* nodo) {
+	void _actualizarAltura(Node<T>* nodo) {
 		if (nodo != nullptr) {
 			int hizq = _altura(nodo->izq);
 			int hder = _altura(nodo->der);
@@ -46,8 +46,8 @@ private:
 		}
 	}
 
-	void _rotarDerecha(Nodo<T>*& nodo) {
-		Nodo<T>* p = nodo->izq;
+	void _rotarDerecha(Node<T>*& nodo) {
+		Node<T>* p = nodo->izq;
 		nodo->izq = p->der;
 		p->der = nodo;
 		//Actualizamos la altura
@@ -56,9 +56,9 @@ private:
 		_actualizarAltura(nodo);
 	}
 
-	void _rotarIzquierda(Nodo<T>*& nodo) {
+	void _rotarIzquierda(Node<T>*& nodo) {
 
-		Nodo<T>* p = nodo->der;
+		Node<T>* p = nodo->der;
 		nodo->der = p->izq;
 		p->izq = nodo;
 		//Actualizamos la altura
@@ -67,7 +67,7 @@ private:
 		_actualizarAltura(nodo);
 	}
 
-	void _balanceo(Nodo<T>*& nodo) {
+	void _balanceo(Node<T>*& nodo) { 
 		int hizq = _altura(nodo->izq);
 		int hder = _altura(nodo->der);
 		int fb = hder - hizq;
@@ -92,10 +92,10 @@ private:
 		else _actualizarAltura(nodo);
 	}
 
-	bool _insertar(Nodo<T>*& nodo, T e) {
+	bool _insertar(Node<T>*& nodo, T e) {
 		if (nodo == nullptr) {
 			//Nuevo elemento
-			nodo = new Nodo<T>();
+			nodo = new Node<T>();
 			nodo->elemento = e;
 			return true;
 		}
@@ -112,14 +112,14 @@ private:
 		return true;
 	}
 
-	void _inOrden(Nodo<T>* nodo) {
+	void _inOrden(Node<T>* nodo) { 
 		if (nodo == nullptr) return;
 		_inOrden(nodo->izq);
 		procesar(nodo->elemento);
 		_inOrden(nodo->der);
 	}
 
-	void _inOrdenH(Nodo<T>* nodo) {
+	void _inOrdenH(Node<T>* nodo) { 
 
 		if (nodo == nullptr) return;
 		_inOrdenH(nodo->izq);
@@ -127,12 +127,12 @@ private:
 		_inOrdenH(nodo->der);
 	}
 
-	int _obtenerBalance(Nodo<T>* nodo) {
+	int _obtenerBalance(Node<T>* nodo) { 
 		if (nodo == nullptr) return 0;
 		return _altura(nodo->der) - _altura(nodo->izq);
 	}
 
-	bool _isBalance(Nodo<T>* nodo) {
+	bool _isBalance(Node<T>* nodo) { 
 		if (nodo == nullptr) return true;
 		int valorBalance = _obtenerBalance(nodo);
 		if (valorBalance > 1 || valorBalance < -1) return false;
@@ -145,19 +145,19 @@ private:
 		else cout << "No es un Arbol ALV" << endl;
 	};
 
-	int _obtenerAltura(Nodo<T>* nodo) {
+	int _obtenerAltura(Node<T>* nodo) {
 		if (nodo == nullptr) return 0;
 		int alturaIzq = _altura(nodo->izq);
 		int alturaDer = _altura(nodo->der);
 		return max(alturaIzq, alturaDer) + 1; //se le suma uno para contar el nivel 0 o la raiz  
 	}
 
-	int _contadorNodos(Nodo <T>* nodo) {
+	int _contadorNodos(Node <T>* nodo) {
 		if (nodo == nullptr) return 0;
 		return _contadorNodos(nodo->izq) + _contadorNodos(nodo->der) + 1; //se le suma uno por la raiz
 	}
 
-	bool _isPerfect(Nodo<T>* nodo) {
+	bool _isPerfect(Node<T>* nodo) {
 		int alturaArbol = _obtenerAltura(nodo);
 		int nodos = _contadorNodos(nodo);
 		int nodosEsperados = pow(2, alturaArbol) - 1;          //formula matematica para hallar los nodos esperados de un arbol 
@@ -170,8 +170,8 @@ private:
 		else cout << "No es un arbol completo" << endl;
 	}
 
-	Nodo<T>* _busqueda(Nodo<T>* nodo, function <bool(T)>condition) {
-		if (nodo == nullptr) return nullptr;
+	Node<T>* _busqueda(Node<T>* nodo, function <bool(T)>condition) { 
+		if (nodo == nullptr) return nullptr; 
 		if (condition(nodo->elemento)) return nodo;
 		else if (condition(nodo->elemento)) { return _busqueda(nodo->izq, condition); }
 		else return _busqueda(nodo->der, condition);
@@ -192,7 +192,7 @@ public:
 
 	void inOrdenH() { _inOrdenH(raiz); }
 
-	int obtenerBalance(Nodo<T>* nodo) { return _obtenerBalance(nodo); }
+	int obtenerBalance(Node<T>* nodo) { return _obtenerBalance(nodo); }
 
 	void  isBalance() {
 		bool answer = _isBalance(raiz);
@@ -214,7 +214,7 @@ public:
 
 	void isComplete() { _isComplete(); }
 
-	Nodo<T>* busqueda(function <bool(T)>condition) {
+	Node<T>* busqueda(function <bool(T)>condition) {
 		return _busqueda(raiz, condition);
 	}
 };
