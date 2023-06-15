@@ -2,13 +2,14 @@
 #include <iostream>
 #include <string>
 
-class Cliente {
+class Usuario{
 	std::string filename = "usuarios.csv";
 	std::string email, password, nombre, UUID;
+	int rol;
 public:
-	Cliente();
+	Usuario();
 	std::string getUUID();
 	std::string getNombre();
 	bool login(std::string email, std::string pass);
-	bool registro(std::string email, std::string name, std::string password);
+	bool registro(std::string email, std::string name, std::string password, int rol);
 };

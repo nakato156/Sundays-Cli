@@ -127,19 +127,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="ArbolAVL.cpp" />
-    <ClCompile Include="Cliente.cpp" />
     <ClCompile Include="Crypt.cpp" />
+    <ClCompile Include="DataFrame.cpp" />
+    <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="Hashing.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Hash.cpp" />
     <ClCompile Include="Producto.cpp" />
     <ClCompile Include="Sundays-Cli.cpp" />
+    <ClCompile Include="Usuario.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cliente.h" />
+    <ClInclude Include="Carrito.h" />
+    <ClInclude Include="Compra.h" />
     <ClInclude Include="Crypt.h" />
+    <ClInclude Include="Historial.h" />
     <ClInclude Include="macros.h" />
+    <ClInclude Include="Usuario.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

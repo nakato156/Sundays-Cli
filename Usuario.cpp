@@ -1,15 +1,15 @@
-#include "Cliente.h"
+#include "Usuario.h"
 #include "Crypt.h"
 #include "CSVparser.hpp"
 
 using namespace std;
 
-Cliente::Cliente() = default;
+Usuario::Usuario() = default;
 
-string Cliente::getUUID() { return UUID; }
-string Cliente::getNombre() { return nombre; }
+string Usuario::getUUID() { return UUID; }
+string Usuario::getNombre() { return nombre; }
 
-bool Cliente::login(string email, string pass) {
+bool Usuario::login(string email, string pass) {
 	csv::Parser file = csv::Parser(filename);	//usuarios csv						2
 	int size = file.rowCount();					//tamanio fila						2
 	pass = Cripto::SHA256(pass).toString();		//la contrasea encriptada a string	3
@@ -19,14 +19,15 @@ bool Cliente::login(string email, string pass) {
 			nombre = file[i]["nombre"];			//3
 			UUID = file[i]["uuid"];				//3
 			this->email = file[i]["email"];		//4
-			password = file[i]["password"];		//3			
+			password = file[i]["password"];		//3
+			rol = file[i]["rol"];				//3
 			return true;
 		}
 	}
 	return false;
 }
 
-bool Cliente::registro(string email, string name, string pass) {
+bool Usuario::registro(string email, string name, string pass, int rol) {
 	try {
 		UUID = Cripto::generateUUID();									//generacion del codigo
 		csv::Parser file = csv::Parser(filename);						//usuarios csv
