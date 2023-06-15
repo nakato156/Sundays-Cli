@@ -128,13 +128,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArbolAVL.cpp" />
+    <ClCompile Include="Cliente.cpp" />
+    <ClCompile Include="Crypt.cpp" />
+    <ClCompile Include="Hashing.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Hash.cpp" />
-    <ClCompile Include="Hasing.cpp" />
     <ClCompile Include="Producto.cpp" />
     <ClCompile Include="Sundays-Cli.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cliente.h" />
+    <ClInclude Include="Crypt.h" />
     <ClInclude Include="macros.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
