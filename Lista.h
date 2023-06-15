@@ -27,6 +27,17 @@ public:
         tail = nullptr;
         size = 0;
     }
+    size_t getSize() { return size; }  
+    Nodo<T>* at(int indice) { 
+        Nodo<T>* temp = start;
+        int cont = 0; 
+        while (temp != nullptr) { 
+            if (cont == indice)break;
+            temp = temp->next;
+            cont++; 
+        }
+        return temp;
+    }
     void push_frontV1(T e) {//Sin depurar
         if (start == nullptr) {
             Nodo<T>* _new = new Nodo<T>(e);

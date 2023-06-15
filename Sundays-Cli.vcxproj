@@ -135,6 +135,7 @@
     <ClCompile Include="Hashing.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Hash.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Producto.cpp" />
     <ClCompile Include="Sundays-Cli.cpp" />
     <ClCompile Include="Usuario.cpp" />
