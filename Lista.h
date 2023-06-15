@@ -4,6 +4,7 @@
 #include <functional>
 #include <conio.h>
 #include <iostream>
+#include <iterator>
 
 using namespace std;
 template <class T>
@@ -12,6 +13,38 @@ struct Nodo {
     Nodo<T>* next;
     Nodo<T>* prev;
     Nodo(T c) { element = c; next = nullptr; prev = nullptr; }
+};
+template <class T>
+class Iterador {
+private:
+    Nodo<T>* current;
+
+public:
+    Iterador(Nodo<T>* nodo) : current(nodo) {}
+
+    // Operadores de acceso y modificación
+    T& operator*() const {
+        return current->element;
+    }
+
+    Iterador<T>& operator++() {
+        current = current->next;
+        return *this;
+    }
+
+    Iterador<T>& operator--() {
+        current = current->prev;
+        return *this;
+    }
+
+    // Operadores de comparación
+    bool operator==(const Iterador<T>& otro) const {
+        return current == otro.current;
+    }
+
+    bool operator!=(const Iterador<T>& otro) const {
+        return current != otro.current;
+    }
 };
 
 template <class T>
@@ -27,17 +60,29 @@ public:
         tail = nullptr;
         size = 0;
     }
-    size_t getSize() { return size; }  
-    Nodo<T>* at(int indice) { 
-        Nodo<T>* temp = start;
-        int cont = 0; 
-        while (temp != nullptr) { 
-            if (cont == indice)break;
-            temp = temp->next;
-            cont++; 
-        }
-        return temp;
+    Iterador<T> Lista<T>::begin() const {
+        return Iterador<T>(start);
     }
+    size_t getsize() { return this->size; }
+    Iterador<T> end() const {
+        return Iterador<T>(nullptr);
+    }
+    T& at(size_t posicion) const {
+        if (posicion < 1 || posicion > size) {
+            throw std::out_of_range("Índice fuera de rango");
+        }
+        Nodo<T>* current = start;
+        size_t currentPosition = 1;
+
+        while (currentPosition < posicion) {
+            current = current->next;
+            currentPosition++;
+        }
+
+        return current->element;
+    }
+
+
     void push_frontV1(T e) {//Sin depurar
         if (start == nullptr) {
             Nodo<T>* _new = new Nodo<T>(e);
@@ -255,4 +300,5 @@ public:
     }
 
 };
+
 #endif // DEBUG
