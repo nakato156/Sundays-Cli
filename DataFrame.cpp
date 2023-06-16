@@ -5,6 +5,17 @@
 
 using namespace std;
 
+class DataFrameError : public exception {
+private:
+	string msg;
+public:
+	DataFrameError() = default;
+	DataFrameError(string msg_) : msg(msg_) {};
+	const char* what() const throw() {
+		return msg.c_str();
+	}
+};
+
 class Fila {
 	vector<string> columnas;
 	vector<string> vals;
@@ -56,12 +67,13 @@ class DataFrame {
 	vector<string> data;
 	char separador = ',';
 	int length = 0;
-
+	string filename;
 public:
 	DataFrame() = default;
 	int size() { return length; }
 	void read_csv(const string filename, const char sep = ',') {
 		separador = sep;
+		this->filename = filename;
 		ifstream archivo(filename);
 
 		if (!archivo.is_open()) {
@@ -82,7 +94,24 @@ public:
 		length--;
 		parseContenido();
 	}
+	void addRow(vector<string> data) {
+		if (data.size() != columnas.size()) 
+			throw DataFrameError("La columna agregada no tiene el tamano adecuado"); //error
+		Fila nueva_fila = Fila(columnas);
+		for (auto campo : data)
+			nueva_fila.push(campo);
+	}
+	void save() {
+		ofstream archivo(filename);
+		if (!archivo.is_open()) throw DataFrameError("No se pudo guardar el archivo");
 
+		for (int i = 0; i < length; i++) {
+			Fila fila = filas[i];
+			for (int c = 0; c < fila.size(); c++)
+				archivo << fila[c] << ( c + 1 == fila.size() ? '\n' : separador);
+		}
+
+	}
 	Fila getRow(int i) const { return filas[i]; }
 	Fila& operator[](int i) { return filas[i]; }
 
