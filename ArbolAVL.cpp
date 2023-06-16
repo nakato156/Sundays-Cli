@@ -5,6 +5,7 @@
 #include <functional>
 #include <algorithm>
 #include "Producto.h"
+
 using namespace std;
 
 template<class T>
@@ -25,7 +26,6 @@ public:
 };
 
 template<class T, class K>
-
 class ArbolAVL {
 private:
 	Node<T>* raiz;
@@ -301,50 +301,50 @@ void menu(ArbolAVL<Producto, int>* tree) {
 	}
 }
 
-int main()
-{
-	srand(time(NULL));
-	int cant = 5 + rand() % 8;
-	ArbolAVL<Producto, int>* tree;
-	int insercion;
-	cout << "Seleccione el tipo de insercion que desee hacer: " << endl;
-	cout << "1) Por Nombre " << endl;
-	cout << "2) Por Categoria " << endl;
-	cout << "3) Por Precio " << endl;
-
-	cin >> insercion;
-	if (insercion == 1) {
-		auto lambdaCmpName = [](Producto a, Producto b) ->short {
-			if (a.getNombre().compare(b.getNombre()) < 0) return -1;
-			else if (a.getNombre().compare(b.getNombre()) > 0) return 1;
-			else return 0;
-		};
-		tree = new ArbolAVL<Producto, int>(imprimir, imprimirInt, lambdaCmpName);
-		//CARGA DE ARCHIVOS
-		//Init(tree, cant);
-		menu(tree);
-	}
-	else if (insercion == 2) {
-		auto lambdaCmpCategoria = [](Producto a, Producto b)->short {
-			if (a.getCategoria().compare(b.getCategoria()) < 0) return -1;
-			else if (a.getCategoria().compare(b.getCategoria()) > 0) return -1;
-			else return 0;
-		};
-		tree = new ArbolAVL<Producto, int>(imprimir, imprimirInt, lambdaCmpCategoria);
-		//CARGA DE ARCHIVOS
-		//Init(tree, cant);
-		menu(tree);
-	}
-	else {
-		auto lambdaCmpPrecio = [](Producto a, Producto b)-> short {
-			if (a.getPrecio() < b.getPrecio()) return -1;
-			else if (a.getPrecio() > b.getPrecio()) return 1;
-			else return 0;
-		};
-		tree = new ArbolAVL<Producto, int>(imprimir, imprimirInt, lambdaCmpPrecio);
-		//CARGA DE ARCHIVOS
-		//Init(tree, cant);
-		menu(tree);
-	}
-	return 0;
-}
+//int main()
+//{
+//	srand(time(NULL));
+//	int cant = 5 + rand() % 8;
+//	ArbolAVL<Producto, int>* tree;
+//	int insercion;
+//	cout << "Seleccione el tipo de insercion que desee hacer: " << endl;
+//	cout << "1) Por Nombre " << endl;
+//	cout << "2) Por Categoria " << endl;
+//	cout << "3) Por Precio " << endl;
+//
+//	cin >> insercion;
+//	if (insercion == 1) {
+//		auto lambdaCmpName = [](Producto a, Producto b) ->short {
+//			if (a.getNombre().compare(b.getNombre()) < 0) return -1;
+//			else if (a.getNombre().compare(b.getNombre()) > 0) return 1;
+//			else return 0;
+//		};
+//		tree = new ArbolAVL<Producto, int>(imprimir, imprimirInt, lambdaCmpName);
+//		//CARGA DE ARCHIVOS
+//		//Init(tree, cant);
+//		menu(tree);
+//	}
+//	else if (insercion == 2) {
+//		auto lambdaCmpCategoria = [](Producto a, Producto b)->short {
+//			if (a.getCategoria().compare(b.getCategoria()) < 0) return -1;
+//			else if (a.getCategoria().compare(b.getCategoria()) > 0) return -1;
+//			else return 0;
+//		};
+//		tree = new ArbolAVL<Producto, int>(imprimir, imprimirInt, lambdaCmpCategoria);
+//		//CARGA DE ARCHIVOS
+//		//Init(tree, cant);
+//		menu(tree);
+//	}
+//	else {
+//		auto lambdaCmpPrecio = [](Producto a, Producto b)-> short {
+//			if (a.getPrecio() < b.getPrecio()) return -1;
+//			else if (a.getPrecio() > b.getPrecio()) return 1;
+//			else return 0;
+//		};
+//		tree = new ArbolAVL<Producto, int>(imprimir, imprimirInt, lambdaCmpPrecio);
+//		//CARGA DE ARCHIVOS
+//		//Init(tree, cant);
+//		menu(tree);
+//	}
+//	return 0;
+//}

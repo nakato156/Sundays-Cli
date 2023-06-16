@@ -1,6 +1,6 @@
 #include <cstring>
 #include <string>
-#include "helpers.cpp"
+#include "helpers.h"
 
 class Hashing {
 private:
@@ -35,7 +35,7 @@ public:
 		int i = sizeof(key) * 8 - size;
 		long long int block = ((key * c.current()) >> i) & ((1 << (key * c.current())) - 1);
 
-		auto num_veces = GeneradorPrimos(block + c.current());
+		GeneradorPrimos num_veces = GeneradorPrimos(block + c.current());
 		i -= size;
 		size_t hash = num_veces.current();
 		for (; i >= 0; i -= size) {

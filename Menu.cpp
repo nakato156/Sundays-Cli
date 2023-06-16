@@ -24,9 +24,9 @@ Lista<Producto> generarMenu(DataFrame data) {
 
 void mostrarMenuLista(Lista<Producto>& menu) {
 	cout << "Menu de hoy: " << endl;
-	cout << "Plato " << "\t\t\t\tCategoria" << "\t\tPrecio" << endl;
+	cout << "Plato " << "\t\tPrecio" << endl;
 	for (int i = 0; i < menu.getSize(); i++) {
-		cout << i + 1 << ") " << menu.at(i)->element.getNombre() << "\t" << menu.at(i)->element.getCategoria() << "\t" << menu.at(i)->element.getPrecio() << endl;
+		cout << menu.at(i).getNombre() << "\t\t" << menu.at(i).getPrecio() << endl;
 	}
 	cout << menu.getSize() + 1 << ") Salir " << endl;
 }
@@ -40,19 +40,18 @@ Lista<Producto> MenuUserV2(DataFrame data) {
 		mostrarMenuLista(menu);
 		cin >> eleccion;
 		if (eleccion >= 1 && eleccion <= menu.getSize()) {
-			lista.push_back(menu.at(eleccion - 1)->element);
+			lista.push_back(menu.at(eleccion - 1));
 		}
 	} while (eleccion != menu.getSize() + 1);
 	return  lista;
 }
 
-int main()
-{
-	srand(time(NULL)); 
-	Lista<Producto> lista_prod;
-	DataFrame data;
-	data = cargarDatos();
-	lista_prod = MenuUserV2(data); cout << endl;
-	lista_prod.print();
-	return 0;
-}
+//int main()
+//{
+//	srand(time(NULL)); 
+//	Lista<Producto> lista_prod;
+//	DataFrame data = cargarDatos();
+//	lista_prod = MenuUserV2(data); cout << endl;
+//	lista_prod.print();
+//	return 0;
+//}

@@ -60,10 +60,10 @@ public:
         tail = nullptr;
         size = 0;
     }
-    Iterador<T> Lista<T>::begin() const {
+    Iterador<T> begin() const {
         return Iterador<T>(start);
     }
-    size_t getsize() { return this->size; }
+    size_t getSize() { return this->size; }
     Iterador<T> end() const {
         return Iterador<T>(nullptr);
     }

@@ -133,7 +133,7 @@
     <ClCompile Include="DataFrame.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="Hashing.cpp" />
-    <ClCompile Include="helpers.cpp" />
+    <ClCompile Include="helpers.h" />
     <ClCompile Include="Hash.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Producto.cpp" />

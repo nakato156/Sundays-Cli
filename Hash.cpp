@@ -1,5 +1,7 @@
-#include "helpers.cpp"
+#include "helpers.h"
 #include "Hashing.cpp"
+
+using namespace std;
 
 template <class K, class V>
 class HashEntidad {
