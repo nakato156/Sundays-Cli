@@ -144,9 +144,11 @@
     <ClInclude Include="Carrito.h" />
     <ClInclude Include="Compra.h" />
     <ClInclude Include="Crypt.h" />
+    <ClInclude Include="DataFrame.h" />
     <ClInclude Include="Historial.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="macros.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="Usuario.h" />
   </ItemGroup>
