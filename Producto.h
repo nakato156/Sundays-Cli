@@ -1,4 +1,7 @@
 #pragma once
+#ifndef PRODUCTO_H
+#define DATAFRAME_H
+
 #include <iostream> 
 using namespace std;
 class Producto {
@@ -43,3 +46,4 @@ public:
 		return os;
 	}
 };
+#endif

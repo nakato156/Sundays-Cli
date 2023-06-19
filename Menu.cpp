@@ -6,7 +6,7 @@ Menu::Menu() = default;
 Menu::~Menu() = default;  
 
 DataFrame Menu::cargarDatos() {    
-	data.read_csv("comidas.csv"); 
+	data.read_csv("comida.csv"); 
 	return data;
 } 
 Lista<Producto> Menu::generarMenu(DataFrame data) {
@@ -14,6 +14,7 @@ Lista<Producto> Menu::generarMenu(DataFrame data) {
 	for (int i = 0; i < 5; i++) {
 		auto fila = data[i];
 		menu.push_back(Producto(fila["Id"], fila["Nombre"], fila["Tipo"], precios[i]));
+		cout << menu.at(i) << endl;
 	}
 	return menu;
  }

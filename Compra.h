@@ -1,7 +1,10 @@
 #pragma once
+#ifndef COMPRA_H
+#define COMPRA_H
+
 #include "Usuario.h"
 #include "Carrito.h"
-//#include "Lista.h"
+#include "Lista.h"
 #include <iostream>
 #include <string>
 #include <functional>
@@ -13,9 +16,10 @@ protected:
 	std::string UUID, fecha;
 	Usuario cliente;
 	CarritoDeCompras carrito;
-	static Compra load(MiVector<Producto>&, const std::string[]);
+	static Compra load(Lista<Producto>&, const std::string[]);
 public:
 	Compra();
 	Compra(Usuario client, const CarritoDeCompras&);
 	void Guardar();
 };
+#endif

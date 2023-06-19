@@ -30,7 +30,7 @@ bool Fila::set(const string& col, const string& val) {
 DataFrame::DataFrame() = default; 
 int DataFrame::size() { return length; } 
 
-void DataFrame::read_csv(const string filename, const char sep = ','){
+void DataFrame::read_csv(const string filename, const char sep){
 	separador = sep; 
 	this->filename = filename; 
 	ifstream archivo(filename); 

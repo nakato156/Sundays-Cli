@@ -39,9 +39,6 @@
     <ClCompile Include="DataFrame.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Admin.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Usuario.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -81,6 +78,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="DataFrame.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Hashing.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

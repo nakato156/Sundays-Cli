@@ -1,5 +1,5 @@
 #pragma once
-#include "Producto.cpp"
+#include "Producto.h"
 #include <vector> // cambiar por lista
 #include <iostream>
 

@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="ArbolAVL.cpp" />
     <ClCompile Include="Crypt.cpp" />
     <ClCompile Include="DataFrame.cpp" />
@@ -145,6 +144,7 @@
     <ClInclude Include="Compra.h" />
     <ClInclude Include="Crypt.h" />
     <ClInclude Include="DataFrame.h" />
+    <ClInclude Include="Hashing.h" />
     <ClInclude Include="Historial.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="macros.h" />

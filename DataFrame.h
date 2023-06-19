@@ -1,4 +1,7 @@
 #pragma once
+#ifndef DATAFRAME_H
+#define DATAFRAME_H
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -11,7 +14,7 @@ private:
 	string msg;
 public:
 	DataFrameError(); 
-	DataFrameError(string msg_) : msg(msg_) {};
+	DataFrameError(string msg_);
 	const char* what() const throw(); 
 };
 
@@ -21,7 +24,7 @@ class Fila {
 
 public:
 	Fila(); 
-	Fila(const vector<string>& cols) : columnas(cols) {};
+	Fila(const vector<string>& cols);
 	int size(); 
 
 	void push(const string& val); 
@@ -78,3 +81,4 @@ private:
 
 	void parseContenido(); 
 };
+#endif

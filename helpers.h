@@ -1,3 +1,4 @@
+#pragma once
 #ifndef HELPERS_H
 #define HELPERS_H
 #include <iostream>
@@ -9,6 +10,7 @@
 #include <map>
 #include <conio.h>
 #include "Lista.h"
+
 using namespace std;
 
 enum class Categoria {
@@ -100,6 +102,7 @@ void clasificarPlatos(Lista<Plato>& platosPrincipales, Lista<Plato>& entradas, L
 	}
 
 }
+
 class GeneradorPrimos {
 private:
 	int n_primo = 2;

@@ -1,5 +1,4 @@
-#include "helpers.h"
-#include "Hashing.cpp"
+#include "Hashing.h"
 
 using namespace std;
 
