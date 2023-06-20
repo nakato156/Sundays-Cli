@@ -144,13 +144,17 @@
     <ClInclude Include="Compra.h" />
     <ClInclude Include="Crypt.h" />
     <ClInclude Include="DataFrame.h" />
+    <ClInclude Include="GenPrimos.h" />
     <ClInclude Include="Hashing.h" />
     <ClInclude Include="Historial.h" />
     <ClInclude Include="Lista.h" />
-    <ClInclude Include="macros.h" />
+    <ClInclude Include="constantes.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="Usuario.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="comida.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

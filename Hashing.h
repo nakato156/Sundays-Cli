@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <string>
-#include "helpers.h"
+#include "GenPrimos.h"
 
 class Hashing {
 private:

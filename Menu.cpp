@@ -1,11 +1,12 @@
 #include "Menu.h"
+
 using namespace std; 
 
 Menu::Menu() = default; 
 Menu::~Menu() = default;  
 
 DataFrame Menu::cargarDatos() {    
-	data.read_csv("comida.csv"); 
+	data.read_csv(filenameComida);
 	return data;
 } 
 Lista<Producto> Menu::generarMenu(DataFrame data) {

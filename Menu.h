@@ -6,11 +6,8 @@
 #define MENU_H
 #include "Lista.h" 
 #include "DataFrame.h"  
-#include "Producto.h" 
-
-#define ARRIBA 72
-#define ABAJO 80
-#define ENTER 13
+#include "Producto.h"
+#include "constantes.h"
 
 using namespace std;
 
