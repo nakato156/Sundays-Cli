@@ -1,4 +1,3 @@
-#pragma once
 #include "Menu.h"
 using namespace std; 
 
@@ -14,7 +13,6 @@ Lista<Producto> Menu::generarMenu(DataFrame data) {
 	for (int i = 0; i < 5; i++) {
 		auto fila = data[i];
 		menu.push_back(Producto(fila["Id"], fila["Nombre"], fila["Tipo"], precios[i]));
-		cout << menu.at(i) << endl;
 	}
 	return menu;
  }
@@ -22,9 +20,31 @@ void Menu::mostrarMenuLista(Lista<Producto>& menu) {
 	cout << "Menu de hoy: " << endl;
 	cout << "Plato " << "\t\t\t\tCategoria" << "\t\tPrecio" << endl;
 	for (int i = 0; i < menu.getSize(); i++) {
-		cout << i + 1 << ") " << menu.at(i).getNombre() << "\t" << menu.at(i).getCategoria() << "\t" << menu.at(i).getPrecio() << endl;
+		cout << i + 1 << ") " << menu.at(i).getNombre() << "\t\t\t" << menu.at(i).getCategoria() << "\t\t" << menu.at(i).getPrecio() << endl;
 	}
 	cout << menu.getSize() + 1 << ") Salir " << endl;
+}
+int Menu::selectOpcion() {
+	int x = 0, y = this->coordenadas.Y != 0 ? this->coordenadas.Y : 2;
+	gotoxy(x, y);
+	while (true) {
+		int key = _getch();
+
+		switch (key) {
+		case ARRIBA:
+			y - 1 < 2 ? 0 : y--;
+			break;
+		case ABAJO:
+			y + 1 > 7 ? 0 : y++;
+			break;
+		case ENTER:
+			return y - 1;
+			break;
+		default:
+			break;
+		}
+		gotoxy(x, y);
+	}
 }
 
 Lista<Producto> Menu::MenuUserV2(DataFrame data) {
@@ -32,9 +52,9 @@ Lista<Producto> Menu::MenuUserV2(DataFrame data) {
 	Lista<Producto> menu = generarMenu(data);
 
 	int eleccion;
+	mostrarMenuLista(menu);
 	do {
-		mostrarMenuLista(menu);
-		cin >> eleccion;
+		eleccion = selectOpcion();
 		if (eleccion >= 1 && eleccion <= menu.getSize()) {
 			lista.push_back(menu.at(eleccion - 1));
 		}
