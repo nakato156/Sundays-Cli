@@ -1,4 +1,7 @@
 #pragma once
+#ifndef HIST_H
+#define HIST_H
+
 #include "Lista.h"
 #include "Compra.h"
 #include "Usuario.h"
@@ -27,3 +30,4 @@ public:
 		}
 	}
 };
+#endif
