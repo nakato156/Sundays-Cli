@@ -69,20 +69,19 @@ public:
         return Iterador<T>(nullptr);
     }
     T& at(size_t posicion) const {
-        if (posicion < 1 || posicion > size) {
+        if (posicion < 0 || posicion > size) {
             throw std::out_of_range("Índice fuera de rango");
         }
         Nodo<T>* current = start;
-        size_t currentPosition = 1;
+        size_t currentPosicion = 0;
 
-        while (currentPosition < posicion) {
+        while (currentPosicion < posicion) {
             current = current->next;
-            currentPosition++;
+            currentPosicion++;
         }
 
         return current->element;
     }
-
 
     void push_frontV1(T e) {//Sin depurar
         if (start == nullptr) {
