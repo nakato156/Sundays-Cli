@@ -5,24 +5,38 @@
 
 using namespace std;
 
+void mostrarOpciones(HANDLE hConsole, int select = 0) {
+    gotoxy(0, 0);
+    if(!select) SetConsoleTextAttribute(hConsole, 10);
+    cout << "\r> Iniciar sesion" << endl;
+    SetConsoleTextAttribute(hConsole, 7);
+
+    if(select) SetConsoleTextAttribute(hConsole, 10);
+    cout << "> Registro\r";
+    SetConsoleTextAttribute(hConsole, 7);
+}
+
 int main() {
     srand(time(NULL));
-    cout << "\tIniciar sesion \t\t Registro" << endl;
-    int x = 0, pos_x_reg = 20;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    mostrarOpciones(hConsole);
+
+    int y = 0, pos_y_login = 0, pos_y_reg = 1;
+    gotoxy(2, y);
+
     while (true){
         TECLA tecla = getTecla();
-        if (tecla == TECLA::k_IZQ) {
-            if (x != 0) {
-                x = 0;
-                gotoxy(0, 0);
-            }
+        if (tecla == TECLA::K_ABAJO) {
+            if (y != pos_y_login)
+                y = pos_y_login;
         }
-        else if (tecla == TECLA::K_DER) {
-            if (x != pos_x_reg) {
-                x = pos_x_reg;
-                gotoxy(pos_x_reg, 0);
-            }
+        else if (tecla == TECLA::K_ARRIBA) {
+            if (y != pos_y_reg)
+                y = pos_y_reg;
         }
+
+        mostrarOpciones(hConsole, (int)!y);
+        gotoxy(2, !y);
     }
     //Menu menu;
     //menu.initMenu();
