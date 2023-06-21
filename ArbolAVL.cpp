@@ -30,8 +30,8 @@ class ArbolAVL {
 private:
 	Node<T>* raiz;
 	short (*comparar)(T, T);//puntero a función- en vez de utilizar un functor 
-	void(*procesar)(T); //puntero a función 
-	void(*procesar2)(K); //puntero a función  
+	void(*impresionArbol)(T); //puntero a función 
+	void(*imprimirAlturas)(K); //puntero a función  
 
 	int _altura(Node<T>* nodo) { 
 		if (nodo == nullptr) return -1;
@@ -115,7 +115,7 @@ private:
 	void _inOrden(Node<T>* nodo) { 
 		if (nodo == nullptr) return;
 		_inOrden(nodo->izq);
-		procesar(nodo->elemento);
+		impresionArbol(nodo->elemento);
 		_inOrden(nodo->der);
 	}
 
@@ -123,7 +123,7 @@ private:
 
 		if (nodo == nullptr) return;
 		_inOrdenH(nodo->izq);
-		procesar2(nodo->altura);
+		imprimirAlturas(nodo->altura);
 		_inOrdenH(nodo->der);
 	}
 
@@ -179,8 +179,8 @@ private:
 
 public:
 	ArbolAVL(void(*nuevaFuncion)(T), void(*Funcion2)(K), short(*Comparador)(T, T)) {
-		this->procesar = nuevaFuncion;
-		this->procesar2 = Funcion2;
+		this->impresionArbol = nuevaFuncion;
+		this->imprimirAlturas = Funcion2;
 		this->comparar = Comparador;
 		this->raiz = nullptr;
 	}
