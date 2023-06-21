@@ -25,13 +25,12 @@ public:
 	~Node() {}
 };
 
-template<class T, class K>
+template<class T>
 class ArbolAVL {
 private:
 	Node<T>* raiz;
-	short (*comparar)(T, T);//puntero a función- en vez de utilizar un functor 
+	short (*criterio)(T, T);//puntero a función- en vez de utilizar un functor 
 	void(*impresionArbol)(T); //puntero a función 
-	void(*imprimirAlturas)(K); //puntero a función  
 
 	int _altura(Node<T>* nodo) { 
 		if (nodo == nullptr) return -1;
@@ -99,13 +98,13 @@ private:
 			nodo->elemento = e;
 			return true;
 		}
-		else if (comparar(e, nodo->elemento) == 0) {
+		else if (criterio(e, nodo->elemento) == 0) {
 			_insertar(nodo->der, e);
 		}
-		else if (comparar(e, nodo->elemento) == -1) {
+		else if (criterio(e, nodo->elemento) == -1) {
 			_insertar(nodo->izq, e);
 		}
-		else if (comparar(e, nodo->elemento) == 1) {
+		else if (criterio(e, nodo->elemento) == 1) {
 			_insertar(nodo->der, e);
 		}
 		_balanceo(nodo);
@@ -119,13 +118,13 @@ private:
 		_inOrden(nodo->der);
 	}
 
-	void _inOrdenH(Node<T>* nodo) { 
+	/*void _inOrdenH(Node<T>* nodo) { 
 
 		if (nodo == nullptr) return;
 		_inOrdenH(nodo->izq);
 		imprimirAlturas(nodo->altura);
 		_inOrdenH(nodo->der);
-	}
+	}*/
 
 	int _obtenerBalance(Node<T>* nodo) { 
 		if (nodo == nullptr) return 0;
@@ -178,10 +177,9 @@ private:
 	}
 
 public:
-	ArbolAVL(void(*nuevaFuncion)(T), void(*Funcion2)(K), short(*Comparador)(T, T)) {
+	ArbolAVL(void(*nuevaFuncion)(T), short(*Comparador)(T, T)) {
 		this->impresionArbol = nuevaFuncion;
-		this->imprimirAlturas = Funcion2;
-		this->comparar = Comparador;
+		this->criterio = Comparador;
 		this->raiz = nullptr;
 	}
 	int altura() { return _altura(raiz); }
@@ -190,7 +188,7 @@ public:
 
 	void inOrden() { _inOrden(raiz); }
 
-	void inOrdenH() { _inOrdenH(raiz); }
+	//void inOrdenH() { _inOrdenH(raiz); }
 
 	int obtenerBalance(Node<T>* nodo) { return _obtenerBalance(nodo); }
 
@@ -219,87 +217,79 @@ public:
 	}
 };
 
-template<typename T>
-void imprimir(T e) {
-	cout << "" << e;
-}
-void imprimirInt(int e) {
-	cout << "" << e;
-}
-
-void menu(ArbolAVL<Producto, int>* tree) {
-	int eleccion;
-	cout << "Ingrese la opcion que desee realizar: " << endl;
-	cout << "1) Impresion inOrden de elementos: " << endl;
-	cout << "2) Impresion inOrden de alturas: " << endl;
-	cout << "3) Esta balanceado el arbol? " << endl;
-	cout << "4) Es un arbol AVL? " << endl;
-	cout << "5) El arbol es perfecto? " << endl;
-	cout << "6) El arbol esta completo? " << endl;
-	cout << "7) Buscar " << endl;
-	cin >> eleccion;
-	switch (eleccion) {
-	case 1: {
-		tree->inOrden();
-		break;
-	}
-	case 2: {
-		tree->inOrdenH();
-		break;
-	}
-	case 3: {
-		tree->isBalance();
-		break;
-	}
-	case 4: {
-		tree->isAVL();
-		break;
-	}
-	case 5: {
-		tree->isPerfect();
-		break;
-	}
-	case 6: {
-		tree->isComplete();
-		break;
-	}
-	case 7: {
-		int tipo;
-		cout << "1) Buscar por nombre: " << endl;
-		cout << "2) Buscar por categoria: " << endl;
-		cout << "3) Buscar por precio: " << endl;
-		cin >> tipo;
-		if (tipo == 1) {
-			string nombre{};
-			cout << "Ingrese el nombre del producto: " << endl;
-			cin.ignore();
-			getline(cin, nombre);
-			transform(nombre.begin(), nombre.end(), nombre.begin(), ::toupper);
-			auto resultado = tree->busqueda([&nombre](Producto producto) {return producto.getNombre() == nombre; });
-			if (resultado == nullptr) cout << "No se encontraron coincidencias" << endl;
-			else { cout << resultado->elemento.getNombre() << " " << resultado->elemento.getCategoria() << " " << resultado->elemento.getPrecio() << endl; }
-		}
-		else if (tipo == 2) {
-			string cat{};
-			cout << "Ingrese la categoria que desee buscar: " << endl;
-			cin.ignore();
-			getline(cin, cat);
-			transform(cat.begin(), cat.end(), cat.begin(), ::toupper);
-			auto resultado = tree->busqueda([&cat](Producto producto) {return producto.getCategoria() == cat; });
-			if (resultado == nullptr) cout << "No se encontraron coincidencias" << endl;
-			else cout << resultado->elemento.getNombre() << " " << resultado->elemento.getCategoria() << " " << resultado->elemento.getPrecio() << endl;
-		}
-		else {
-			int precio;
-			cout << "Ingrese su precio a buscar: " << endl; cin >> precio;
-			auto resultado = tree->busqueda([&precio](Producto producto) {return producto.getPrecio() == precio; });
-			if (resultado == nullptr) cout << "No se encontraron coincidencias" << endl;
-			else cout << resultado->elemento.getNombre() << " " << resultado->elemento.getCategoria() << " " << resultado->elemento.getPrecio() << endl;
-		}
-		break;
-	}
-	}
-}
+//void menu(ArbolAVL<Producto>* tree) {
+//	int eleccion;
+//	cout << "Ingrese la opcion que desee realizar: " << endl;
+//	cout << "1) Impresion inOrden de elementos: " << endl;
+//	cout << "2) Impresion inOrden de alturas: " << endl;
+//	cout << "3) Esta balanceado el arbol? " << endl;
+//	cout << "4) Es un arbol AVL? " << endl;
+//	cout << "5) El arbol es perfecto? " << endl;
+//	cout << "6) El arbol esta completo? " << endl;
+//	cout << "7) Buscar " << endl;
+//	cin >> eleccion;
+//	switch (eleccion) {
+//	case 1: {
+//		tree->inOrden();
+//		break;
+//	}
+//	case 2: {
+//		tree->inOrdenH();
+//		break;
+//	}
+//	case 3: {
+//		tree->isBalance();
+//		break;
+//	}
+//	case 4: {
+//		tree->isAVL();
+//		break;
+//	}
+//	case 5: {
+//		tree->isPerfect();
+//		break;
+//	}
+//	case 6: {
+//		tree->isComplete();
+//		break;
+//	}
+//	case 7: {
+//		int tipo;
+//		cout << "1) Buscar por nombre: " << endl;
+//		cout << "2) Buscar por categoria: " << endl;
+//		cout << "3) Buscar por precio: " << endl;
+//		cin >> tipo;
+//		if (tipo == 1) {
+//			string nombre{};
+//			cout << "Ingrese el nombre del producto: " << endl;
+//			cin.ignore();
+//			getline(cin, nombre);
+//			transform(nombre.begin(), nombre.end(), nombre.begin(), ::toupper);
+//			auto resultado = tree->busqueda([&nombre](Producto producto) {return producto.getNombre() == nombre; });
+//			if (resultado == nullptr) cout << "No se encontraron coincidencias" << endl;
+//			else { cout << resultado->elemento.getNombre() << " " << resultado->elemento.getCategoria() << " " << resultado->elemento.getPrecio() << endl; }
+//		}
+//		else if (tipo == 2) {
+//			string cat{};
+//			cout << "Ingrese la categoria que desee buscar: " << endl;
+//			cin.ignore();
+//			getline(cin, cat);
+//			transform(cat.begin(), cat.end(), cat.begin(), ::toupper);
+//			auto resultado = tree->busqueda([&cat](Producto producto) {return producto.getCategoria() == cat; });
+//			if (resultado == nullptr) cout << "No se encontraron coincidencias" << endl;
+//			else cout << resultado->elemento.getNombre() << " " << resultado->elemento.getCategoria() << " " << resultado->elemento.getPrecio() << endl;
+//		}
+//		else {
+//			int precio;
+//			cout << "Ingrese su precio a buscar: " << endl; cin >> precio;
+//			auto resultado = tree->busqueda([&precio](Producto producto) {return producto.getPrecio() == precio; });
+//			if (resultado == nullptr) cout << "No se encontraron coincidencias" << endl;
+//			else cout << resultado->elemento.getNombre() << " " << resultado->elemento.getCategoria() << " " << resultado->elemento.getPrecio() << endl;
+//		}
+//		break;
+//	}
+//	}
+//}
 
 //int main()
 //{
