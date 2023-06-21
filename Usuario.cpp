@@ -8,7 +8,12 @@ Usuario::Usuario() = default;
 
 string Usuario::getUUID() { return UUID; }
 string Usuario::getNombre() { return nombre; }
-
+bool Usuario::isLogged() {
+	return rol != -1 && UUID.size();
+}
+bool Usuario::isAdmin() {
+	return rol == 1;
+}
 bool Usuario::login(string email, string pass) {
 	DataFrame file;								//usuarios csv						2
 	file.read_csv(filename);

@@ -7,6 +7,7 @@
 #define DERECHA 77
 #define IZQR 75
 #define ENTER 13
+#define BACKSPACE 8
 
-enum TECLA { K_ARRIBA, K_ABAJO, k_IZQ, K_DER, K_ENTER };
+enum TECLA { K_ARRIBA, K_ABAJO, k_IZQ, K_DER, K_ENTER, K_BACKSPACE };
 #endif

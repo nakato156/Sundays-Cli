@@ -94,5 +94,8 @@
     <None Include="comida.csv">
       <Filter>Archivos de recursos</Filter>
     </None>
+    <None Include="usuarios.csv">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
 </Project>
