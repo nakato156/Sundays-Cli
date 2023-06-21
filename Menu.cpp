@@ -27,7 +27,7 @@ void Menu::mostrarMenuLista(Lista<Producto>& menu) {
 }
 int Menu::selectOpcion() {
 	int x = 0, y = this->coordenadas.Y != 0 ? this->coordenadas.Y : 2;
-	gotoxy(x, y);
+	_gotoxy(x, y);
 	while (true) {
 		int key = _getch();
 
@@ -44,7 +44,7 @@ int Menu::selectOpcion() {
 		default:
 			break;
 		}
-		gotoxy(x, y);
+		_gotoxy(x, y);
 	}
 }
 

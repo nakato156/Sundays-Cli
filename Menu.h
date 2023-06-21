@@ -8,6 +8,7 @@
 #include "DataFrame.h"  
 #include "Producto.h"
 #include "constantes.h"
+#include "helpers.h"
 
 using namespace std;
 
@@ -16,10 +17,8 @@ class Menu {
 	DataFrame data;
 	Lista<Producto> list_prod;
 	COORD coordenadas;
-	void gotoxy(int x, int y) {
-		coordenadas.X = x;
-		coordenadas.Y = y;
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coordenadas);
+	void _gotoxy(int x, int y) {
+		gotoxy(x, y, coordenadas);
 	}
 public:
 	Menu();

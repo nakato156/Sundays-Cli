@@ -131,8 +131,8 @@
     <ClCompile Include="Crypt.cpp" />
     <ClCompile Include="DataFrame.cpp" />
     <ClCompile Include="Fecha.cpp" />
+    <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Hashing.cpp" />
-    <ClCompile Include="helpers.h" />
     <ClCompile Include="Hash.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Producto.cpp" />
@@ -144,6 +144,7 @@
     <ClInclude Include="Compra.h" />
     <ClInclude Include="Crypt.h" />
     <ClInclude Include="DataFrame.h" />
+    <ClInclude Include="helpers.h" />
     <ClInclude Include="GenPrimos.h" />
     <ClInclude Include="Hashing.h" />
     <ClInclude Include="Historial.h" />
