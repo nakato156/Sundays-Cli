@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <time.h>
@@ -5,22 +6,21 @@
 #include <functional>
 #include <algorithm>
 #include "Producto.h"
-
 using namespace std;
 
 template<class T>
 
-class Node {  
+class Node {
 public:
-	T elemento; 
-	Node* izq; 
-	Node* der; 
-	int altura; 
+	T elemento;
+	Node* izq;
+	Node* der;
+	int altura;
 
 	Node() {
-		izq = nullptr;  
+		izq = nullptr;
 		der = nullptr;
-		altura = 0; 
+		altura = 0;
 	}
 	~Node() {}
 };
@@ -32,7 +32,7 @@ private:
 	short (*criterio)(T, T);//puntero a función- en vez de utilizar un functor 
 	void(*impresionArbol)(T); //puntero a función 
 
-	int _altura(Node<T>* nodo) { 
+	int _altura(Node<T>* nodo) {
 		if (nodo == nullptr) return -1;
 		return nodo->altura;
 	}
@@ -66,7 +66,7 @@ private:
 		_actualizarAltura(nodo);
 	}
 
-	void _balanceo(Node<T>*& nodo) { 
+	void _balanceo(Node<T>*& nodo) {
 		int hizq = _altura(nodo->izq);
 		int hder = _altura(nodo->der);
 		int fb = hder - hizq;
@@ -111,27 +111,19 @@ private:
 		return true;
 	}
 
-	void _inOrden(Node<T>* nodo) { 
+	void _inOrden(Node<T>* nodo) {
 		if (nodo == nullptr) return;
 		_inOrden(nodo->izq);
 		impresionArbol(nodo->elemento);
 		_inOrden(nodo->der);
 	}
 
-	/*void _inOrdenH(Node<T>* nodo) { 
-
-		if (nodo == nullptr) return;
-		_inOrdenH(nodo->izq);
-		imprimirAlturas(nodo->altura);
-		_inOrdenH(nodo->der);
-	}*/
-
-	int _obtenerBalance(Node<T>* nodo) { 
+	int _obtenerBalance(Node<T>* nodo) {
 		if (nodo == nullptr) return 0;
 		return _altura(nodo->der) - _altura(nodo->izq);
 	}
 
-	bool _isBalance(Node<T>* nodo) { 
+	bool _isBalance(Node<T>* nodo) {
 		if (nodo == nullptr) return true;
 		int valorBalance = _obtenerBalance(nodo);
 		if (valorBalance > 1 || valorBalance < -1) return false;
@@ -169,8 +161,8 @@ private:
 		else cout << "No es un arbol completo" << endl;
 	}
 
-	Node<T>* _busqueda(Node<T>* nodo, function <bool(T)>condition) { 
-		if (nodo == nullptr) return nullptr; 
+	Node<T>* _busqueda(Node<T>* nodo, function <bool(T)>condition) {
+		if (nodo == nullptr) return nullptr;
 		if (condition(nodo->elemento)) return nodo;
 		else if (condition(nodo->elemento)) { return _busqueda(nodo->izq, condition); }
 		else return _busqueda(nodo->der, condition);
@@ -187,8 +179,6 @@ public:
 	bool Insertar(T e) { return _insertar(raiz, e); }
 
 	void inOrden() { _inOrden(raiz); }
-
-	//void inOrdenH() { _inOrdenH(raiz); }
 
 	int obtenerBalance(Node<T>* nodo) { return _obtenerBalance(nodo); }
 
@@ -216,125 +206,3 @@ public:
 		return _busqueda(raiz, condition);
 	}
 };
-
-//void menu(ArbolAVL<Producto>* tree) {
-//	int eleccion;
-//	cout << "Ingrese la opcion que desee realizar: " << endl;
-//	cout << "1) Impresion inOrden de elementos: " << endl;
-//	cout << "2) Impresion inOrden de alturas: " << endl;
-//	cout << "3) Esta balanceado el arbol? " << endl;
-//	cout << "4) Es un arbol AVL? " << endl;
-//	cout << "5) El arbol es perfecto? " << endl;
-//	cout << "6) El arbol esta completo? " << endl;
-//	cout << "7) Buscar " << endl;
-//	cin >> eleccion;
-//	switch (eleccion) {
-//	case 1: {
-//		tree->inOrden();
-//		break;
-//	}
-//	case 2: {
-//		tree->inOrdenH();
-//		break;
-//	}
-//	case 3: {
-//		tree->isBalance();
-//		break;
-//	}
-//	case 4: {
-//		tree->isAVL();
-//		break;
-//	}
-//	case 5: {
-//		tree->isPerfect();
-//		break;
-//	}
-//	case 6: {
-//		tree->isComplete();
-//		break;
-//	}
-//	case 7: {
-//		int tipo;
-//		cout << "1) Buscar por nombre: " << endl;
-//		cout << "2) Buscar por categoria: " << endl;
-//		cout << "3) Buscar por precio: " << endl;
-//		cin >> tipo;
-//		if (tipo == 1) {
-//			string nombre{};
-//			cout << "Ingrese el nombre del producto: " << endl;
-//			cin.ignore();
-//			getline(cin, nombre);
-//			transform(nombre.begin(), nombre.end(), nombre.begin(), ::toupper);
-//			auto resultado = tree->busqueda([&nombre](Producto producto) {return producto.getNombre() == nombre; });
-//			if (resultado == nullptr) cout << "No se encontraron coincidencias" << endl;
-//			else { cout << resultado->elemento.getNombre() << " " << resultado->elemento.getCategoria() << " " << resultado->elemento.getPrecio() << endl; }
-//		}
-//		else if (tipo == 2) {
-//			string cat{};
-//			cout << "Ingrese la categoria que desee buscar: " << endl;
-//			cin.ignore();
-//			getline(cin, cat);
-//			transform(cat.begin(), cat.end(), cat.begin(), ::toupper);
-//			auto resultado = tree->busqueda([&cat](Producto producto) {return producto.getCategoria() == cat; });
-//			if (resultado == nullptr) cout << "No se encontraron coincidencias" << endl;
-//			else cout << resultado->elemento.getNombre() << " " << resultado->elemento.getCategoria() << " " << resultado->elemento.getPrecio() << endl;
-//		}
-//		else {
-//			int precio;
-//			cout << "Ingrese su precio a buscar: " << endl; cin >> precio;
-//			auto resultado = tree->busqueda([&precio](Producto producto) {return producto.getPrecio() == precio; });
-//			if (resultado == nullptr) cout << "No se encontraron coincidencias" << endl;
-//			else cout << resultado->elemento.getNombre() << " " << resultado->elemento.getCategoria() << " " << resultado->elemento.getPrecio() << endl;
-//		}
-//		break;
-//	}
-//	}
-//}
-
-//int main()
-//{
-//	srand(time(NULL));
-//	int cant = 5 + rand() % 8;
-//	ArbolAVL<Producto, int>* tree;
-//	int insercion;
-//	cout << "Seleccione el tipo de insercion que desee hacer: " << endl;
-//	cout << "1) Por Nombre " << endl;
-//	cout << "2) Por Categoria " << endl;
-//	cout << "3) Por Precio " << endl;
-//
-//	cin >> insercion;
-//	if (insercion == 1) {
-//		auto lambdaCmpName = [](Producto a, Producto b) ->short {
-//			if (a.getNombre().compare(b.getNombre()) < 0) return -1;
-//			else if (a.getNombre().compare(b.getNombre()) > 0) return 1;
-//			else return 0;
-//		};
-//		tree = new ArbolAVL<Producto, int>(imprimir, imprimirInt, lambdaCmpName);
-//		//CARGA DE ARCHIVOS
-//		//Init(tree, cant);
-//		menu(tree);
-//	}
-//	else if (insercion == 2) {
-//		auto lambdaCmpCategoria = [](Producto a, Producto b)->short {
-//			if (a.getCategoria().compare(b.getCategoria()) < 0) return -1;
-//			else if (a.getCategoria().compare(b.getCategoria()) > 0) return -1;
-//			else return 0;
-//		};
-//		tree = new ArbolAVL<Producto, int>(imprimir, imprimirInt, lambdaCmpCategoria);
-//		//CARGA DE ARCHIVOS
-//		//Init(tree, cant);
-//		menu(tree);
-//	}
-//	else {
-//		auto lambdaCmpPrecio = [](Producto a, Producto b)-> short {
-//			if (a.getPrecio() < b.getPrecio()) return -1;
-//			else if (a.getPrecio() > b.getPrecio()) return 1;
-//			else return 0;
-//		};
-//		tree = new ArbolAVL<Producto, int>(imprimir, imprimirInt, lambdaCmpPrecio);
-//		//CARGA DE ARCHIVOS
-//		//Init(tree, cant);
-//		menu(tree);
-//	}
-//	return 0;
-//}

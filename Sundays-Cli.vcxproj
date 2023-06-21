@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ArbolAVL.cpp" />
     <ClCompile Include="Crypt.cpp" />
     <ClCompile Include="DataFrame.cpp" />
     <ClCompile Include="Fecha.cpp" />
@@ -140,8 +139,10 @@
     <ClCompile Include="Usuario.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArbolAVL.h" />
     <ClInclude Include="Carrito.h" />
     <ClInclude Include="Compra.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="Crypt.h" />
     <ClInclude Include="DataFrame.h" />
     <ClInclude Include="helpers.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="constantes.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Producto.h" />
+    <ClInclude Include="TreeProduct.h" />
     <ClInclude Include="Usuario.h" />
   </ItemGroup>
   <ItemGroup>
