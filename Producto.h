@@ -12,7 +12,7 @@ private:
 	string codigo; 
 public:
 	Producto() {}
-	Producto(string codigo,string nombre, string categoria, float precio) {
+	Producto(string codigo,string nombre, string categoria, float precio=0) {
 		this->codigo = codigo; 
 		this->nombre = nombre;
 		this->categoria = categoria;
