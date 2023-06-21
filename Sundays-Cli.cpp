@@ -7,13 +7,7 @@ using namespace std;
 
 void mostrarOpciones(HANDLE hConsole, int select = 0) {
     gotoxy(0, 0);
-    if(!select) SetConsoleTextAttribute(hConsole, 10);
-    cout << "\r> Iniciar sesion" << endl;
-    SetConsoleTextAttribute(hConsole, 7);
-
-    if(select) SetConsoleTextAttribute(hConsole, 10);
-    cout << "> Registro\r";
-    SetConsoleTextAttribute(hConsole, 7);
+    printSelectLine(hConsole, { "> Iniciar Sesion", "> Registro" }, select, 10);
 }
 
 int main() {

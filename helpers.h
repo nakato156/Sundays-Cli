@@ -2,6 +2,7 @@
 #pragma once
 #ifndef FUNCS_H
 #define FUNCS_H
+#include <vector>
 #include <Windows.h>
 #include <iostream>
 #include <fstream>
@@ -29,6 +30,8 @@ struct Plato {
 Categoria determinarCategoria(const string& categoriaStr);
 Plato buscarPlatoPorCodigo(const string& codigo, const string& nombreArchivo);
 void clasificarPlatos(Lista<Plato>& platosPrincipales, Lista<Plato>& entradas, Lista<Plato>& entrantes, Lista<Plato>& acompanamientos, Lista<Plato>& desayuno);
+
+void printSelectLine(HANDLE hConsole, vector<string>, int selectedLine = 0, int color = 7);
 void gotoxy(int x, int y);
 void gotoxy(int x, int y, COORD&);
 TECLA getTecla();

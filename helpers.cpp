@@ -74,6 +74,14 @@ void clasificarPlatos(Lista<Plato>& platosPrincipales, Lista<Plato>& entradas, L
 
 }
 
+void printSelectLine(HANDLE hConsole, vector<string> lineas, int selectedLine, int color) {
+	for (int i = 0; i < lineas.size(); i++) {
+		if(i == selectedLine) SetConsoleTextAttribute(hConsole, color);
+		cout << lineas.at(i) << endl;
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+}
+
 void gotoxy(int x, int y, COORD& coords) {
 	coords.X = x;
 	coords.Y = y;
