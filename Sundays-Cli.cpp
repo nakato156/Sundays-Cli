@@ -11,7 +11,7 @@ void mostrarOpciones(HANDLE hConsole, int select = 0) {
     printSelectLine(hConsole, { "> Iniciar Sesion", "> Registro" }, select, 10);
 }
 
-Usuario login(HANDLE hConsole, Usuario& usuario) {
+void login(HANDLE hConsole, Usuario& usuario) {
     printSelectLine(hConsole, { make_pair("Iniciar sesion\n", FOREGROUND_RED | FOREGROUND_INTENSITY), make_pair("Ingrese sus datos", 6) });
     
     string email;
@@ -24,7 +24,7 @@ Usuario login(HANDLE hConsole, Usuario& usuario) {
     if (!usuario.isLogged()) cout << "Datos incorrectos\n";
 }
 
-Usuario registro(HANDLE hConsole, Usuario& usuario) {
+void registro(HANDLE hConsole, Usuario& usuario) {
     printSelectLine(hConsole, { make_pair("Registro\n", FOREGROUND_RED | FOREGROUND_INTENSITY), make_pair("Ingrese sus datos", 6) });
 
     string email, nombre, pass;
