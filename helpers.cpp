@@ -1,6 +1,5 @@
 #include "helpers.h"
 
-
 map<string, Lista<Producto>> clasificarPlatos() {
 	map<string, Lista<Producto>> categoriasPlatos; // Mapa para almacenar las listas de platos por categoría
 
@@ -53,7 +52,7 @@ void printSelectLine(const HANDLE hConsole, const vector<string> lineas, const i
 		SetConsoleTextAttribute(hConsole, 7);
 	}
 }
-void printSelectLine(const HANDLE hConsole, const vector<pair<string, WORD>> lineas) {
+void printColoredLine(const HANDLE hConsole, const vector<pair<string, WORD>> lineas) {
 	for (int i = 0; i < lineas.size(); i++) {
 		SetConsoleTextAttribute(hConsole, lineas.at(i).second);
 		cout << lineas.at(i).first << endl;

@@ -12,20 +12,18 @@ void mostrarOpciones(HANDLE hConsole, int select = 0) {
 }
 
 void login(HANDLE hConsole, Usuario& usuario) {
-    printSelectLine(hConsole, { make_pair("Iniciar sesion\n", FOREGROUND_RED | FOREGROUND_INTENSITY), make_pair("Ingrese sus datos", 6) });
+    printColoredLine(hConsole, { make_pair("Iniciar sesion\n", FOREGROUND_RED | FOREGROUND_INTENSITY), make_pair("Ingrese sus datos", 6) });
     
     string email;
     cout << "Email: "; cin >> email;
     cout << "Password: ";
 
     string password = inputPassword();
-    
     usuario.login(email, password);
-    if (!usuario.isLogged()) cout << "Datos incorrectos\n";
 }
 
 void registro(HANDLE hConsole, Usuario& usuario) {
-    printSelectLine(hConsole, { make_pair("Registro\n", FOREGROUND_RED | FOREGROUND_INTENSITY), make_pair("Ingrese sus datos", 6) });
+    printColoredLine(hConsole, { make_pair("Registro\n", FOREGROUND_RED | FOREGROUND_INTENSITY), make_pair("Ingrese sus datos", 6) });
 
     string email, nombre, pass;
     cout << "Nombres: "; getline(cin, nombre);
@@ -72,7 +70,8 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    if (!usuario.isAdmin()) {
+    system("cls");
+    if (usuario.isAdmin()) {
         Menu menu;
         menu.initMenu();
     }
