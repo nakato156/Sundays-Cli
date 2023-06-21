@@ -11,24 +11,6 @@ void mostrarOpciones(HANDLE hConsole, int select = 0) {
     printSelectLine(hConsole, { "> Iniciar Sesion", "> Registro" }, select, 10);
 }
 
-string inputPassword() {
-    char caracter;
-    string password;
-    while (true) {
-        caracter = _getch();
-        if (caracter == ENTER) break;
-        if (caracter != BACKSPACE) {
-            password.push_back(caracter);
-            cout << "*";
-        }
-        else if (caracter == BACKSPACE && password.length() > 0) {
-            cout << "\b \b";
-            password.pop_back();
-        }
-    }
-    return password;
-}
-
 Usuario login(HANDLE hConsole) {
     printSelectLine(hConsole, { make_pair("Iniciar sesion\n", FOREGROUND_RED | FOREGROUND_INTENSITY), make_pair("Ingrese sus datos", 6) });
     

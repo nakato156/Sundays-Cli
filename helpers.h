@@ -15,6 +15,7 @@
 
 using namespace std;
 map<string, Lista<Producto>> clasificarPlatos();
+string inputPassword();
 void printSelectLine(const HANDLE hConsole, const vector<string>, const int selectedLine = 0, const WORD color = 7);
 void printSelectLine(const HANDLE hConsole, const vector<pair<string, WORD>>);
 void gotoxy(int x, int y);

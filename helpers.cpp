@@ -28,6 +28,24 @@ map<string, Lista<Producto>> clasificarPlatos() {
 
 }
 
+string inputPassword() {
+	char caracter;
+	string password;
+	while (true) {
+		caracter = _getch();
+		if (caracter == ENTER) break;
+		if (caracter != BACKSPACE) {
+			password.push_back(caracter);
+			cout << "*";
+		}
+		else if (caracter == BACKSPACE && password.length() > 0) {
+			cout << "\b \b";
+			password.pop_back();
+		}
+	}
+	return password;
+}
+
 void printSelectLine(const HANDLE hConsole, const vector<string> lineas, const int selectedLine, const WORD color) {
 	for (int i = 0; i < lineas.size(); i++) {
 		if(i == selectedLine) SetConsoleTextAttribute(hConsole, color);
