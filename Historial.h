@@ -19,6 +19,7 @@ public:
 		int size = file.size();						//2
 		for (int i = 0; i < size; i++) {			//1+n(1+interna+2)
 			auto fila = file[i];					//2
+			if (fila["uuid"] != cliente.getUUID()) continue;
 			std::string data[] = { fila["uuid"], 
 				fila["cliente_uuid"], 
 				fila["productos"],

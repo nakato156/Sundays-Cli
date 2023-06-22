@@ -64,7 +64,7 @@ public:
     Iterador<T> begin() const {
         return Iterador<T>(start);
     }
-    size_t getSize() { return this->size; }
+    size_t getSize() const { return this->size; }
     Iterador<T> end() const {
         return Iterador<T>(nullptr);
     }
@@ -268,11 +268,11 @@ public:
 
         ++size;
     }
-    T buscador(function<T(Nodo<T>*)>buscador) {
+    T buscador(function<bool(T)>buscador) {
         Nodo<T>* tmp = start;
         while (tmp != nullptr)
         {
-            if (buscador(tmp)) return tmp->element;
+            if (buscador(tmp->element)) return tmp->element;
             tmp = tmp->next;
         }
         cout << "Elemento no encontrado" << endl;

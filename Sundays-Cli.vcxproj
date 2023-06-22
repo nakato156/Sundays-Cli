@@ -128,26 +128,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Carrito.cpp" />
+    <ClCompile Include="Compra.cpp" />
     <ClCompile Include="Crypt.cpp" />
     <ClCompile Include="DataFrame.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Hashing.cpp" />
-    <ClCompile Include="Hash.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Producto.cpp" />
     <ClCompile Include="Registro.cpp" />
     <ClCompile Include="Sundays-Cli.cpp" />
+    <ClCompile Include="Test.cpp" />
     <ClCompile Include="Usuario.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArbolAVL.h" />
     <ClInclude Include="Carrito.h" />
+    <ClInclude Include="Categoria.h" />
     <ClInclude Include="Compra.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Crypt.h" />
     <ClInclude Include="DataFrame.h" />
+    <ClInclude Include="Estadisticas.h" />
+    <ClInclude Include="Hash.h" />
+    <ClInclude Include="HashProduct.h" />
     <ClInclude Include="helpers.h" />
     <ClInclude Include="GenPrimos.h" />
     <ClInclude Include="Hashing.h" />
@@ -158,11 +164,13 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="Registro.h" />
+    <ClInclude Include="Test.h" />
     <ClInclude Include="TreeProduct.h" />
     <ClInclude Include="Usuario.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="comida.csv" />
+    <None Include="historial.csv" />
     <None Include="usuarios.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

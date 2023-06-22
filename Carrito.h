@@ -1,6 +1,6 @@
 #pragma once
 #include "Producto.h"
-#include <vector> // cambiar por lista
+#include "Lista.h" // cambiar por lista
 #include <iostream>
 
 struct Item {
@@ -13,19 +13,19 @@ struct Item {
 
 class CarritoDeCompras {
 private:
-	std::vector<Item> productos;
+	Lista<Item> productos;
 public:
 	CarritoDeCompras();
-	CarritoDeCompras(std::vector<Item> productos) {
+	CarritoDeCompras(Lista<Item> productos) {
 		this->productos = productos;
 	}
-	static CarritoDeCompras load(std::vector<Producto>& productos, std::string data);
+	static CarritoDeCompras load(Lista<Producto>& productos, std::string data);
 	void agregar(const Producto&);
 	void agregar(const Item&);
 	void eliminarProd(const Producto&);
 	std::string exportar();
 	float total() const;
-	operator std::vector<Item>() const {
+	operator Lista<Item>() const {
 		return productos;
 	}
 };

@@ -19,10 +19,10 @@ public:
 		this->precio = precio;
 	}
 	~Producto() {}
-	string getCodigo();
-	string getNombre();
-	string getCategoria();
-	float getPrecio()const ; 
+	string getCodigo() const;
+	string getNombre() const;
+	string getCategoria() const;
+	float getPrecio() const ; 
 
 	//SOBRECARGAS DE OPERADORES
 

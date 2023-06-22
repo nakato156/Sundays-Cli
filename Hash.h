@@ -1,3 +1,4 @@
+#pragma once
 #include "Hashing.h"
 
 using namespace std;
@@ -78,7 +79,7 @@ public:
 		}
 	}
 	int sizeTabla() { return TABLE_SIZE; }
-	int size() { return numElementos; }
+	int size() const { return numElementos; }
 
 	int buscar(const K& key) {
 		int step = 0;
@@ -104,13 +105,19 @@ public:
 			throw std::runtime_error("¡Se ha producido un error!");		//si no existe, error
 	}
 	//imprimri el hashtahle 
-	void imprimir() {
+	void imprimir() const {
 		for (int i = 0; i < TABLE_SIZE; i++) {
 			if (tabla[i] != nullptr) {
 				cout << "Clave: " << tabla[i]->getKey()
 					<< ", Valor: " << tabla[i]->getValue() << endl;
 			}
 			else cout << i << "\n";
+		}
+	}
+
+	void imprimir(void(*func)(V val)) const {
+		for (int i = 0; i < TABLE_SIZE; i++) {
+			if(tabla[i] != nullptr) func(tabla[i]->getValue());
 		}
 	}
 

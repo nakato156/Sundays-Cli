@@ -4,9 +4,8 @@
 
 #include "Usuario.h"
 #include "Carrito.h"
-#include "Lista.h"
-#include <iostream>
-#include <string>
+#include "Crypt.h"
+#include "DataFrame.h"
 #include <functional>
 
 class Compra {
