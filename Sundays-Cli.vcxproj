@@ -127,14 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="App.cpp" />
     <ClCompile Include="Crypt.cpp" />
     <ClCompile Include="DataFrame.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Hashing.cpp" />
     <ClCompile Include="Hash.cpp" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Producto.cpp" />
+    <ClCompile Include="Registro.cpp" />
     <ClCompile Include="Sundays-Cli.cpp" />
     <ClCompile Include="Usuario.cpp" />
   </ItemGroup>
@@ -151,8 +154,10 @@
     <ClInclude Include="Historial.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="constantes.h" />
+    <ClInclude Include="Login.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Producto.h" />
+    <ClInclude Include="Registro.h" />
     <ClInclude Include="TreeProduct.h" />
     <ClInclude Include="Usuario.h" />
   </ItemGroup>
