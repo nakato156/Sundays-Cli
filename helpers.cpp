@@ -1,6 +1,5 @@
 #include "helpers.h"
 
-
 map<string, Lista<Producto>> clasificarPlatos() {
 	map<string, Lista<Producto>> categoriasPlatos; // Mapa para almacenar las listas de platos por categoría
 
@@ -28,6 +27,38 @@ map<string, Lista<Producto>> clasificarPlatos() {
 
 }
 
+string inputPassword() {
+	char caracter;
+	string password;
+	while (true) {
+		caracter = _getch();
+		if (caracter == ENTER) break;
+		if (caracter != BACKSPACE) {
+			password.push_back(caracter);
+			cout << "*";
+		}
+		else if (caracter == BACKSPACE && password.length() > 0) {
+			cout << "\b \b";
+			password.pop_back();
+		}
+	}
+	return password;
+}
+
+void printSelectLine(const HANDLE hConsole, const vector<string> lineas, const int selectedLine, const WORD color) {
+	for (int i = 0; i < lineas.size(); i++) {
+		if(i == selectedLine) SetConsoleTextAttribute(hConsole, color);
+		cout << lineas.at(i) << endl;
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+}
+void printColoredLine(const HANDLE hConsole, const vector<pair<string, WORD>> lineas) {
+	for (int i = 0; i < lineas.size(); i++) {
+		SetConsoleTextAttribute(hConsole, lineas.at(i).second);
+		cout << lineas.at(i).first << endl;
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+}
 void gotoxy(int x, int y, COORD& coords) {
 	coords.X = x;
 	coords.Y = y;
@@ -45,17 +76,16 @@ TECLA getTecla() {
 		switch (key) {
 		case ARRIBA:
 			return TECLA::K_ARRIBA;
-			break;
 		case ABAJO:
 			return TECLA::K_ABAJO;
-			break;
 		case IZQR:
 			return TECLA::k_IZQ;
 		case DERECHA:
 			return TECLA::K_DER;
 		case ENTER:
 			return TECLA::K_ENTER;
-			break;
+		case BACKSPACE:
+			return TECLA::K_BACKSPACE;
 		default:
 			break;
 		}

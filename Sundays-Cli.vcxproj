@@ -127,21 +127,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ArbolAVL.cpp" />
+    <ClCompile Include="App.cpp" />
     <ClCompile Include="Crypt.cpp" />
     <ClCompile Include="DataFrame.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="helpers.cpp" />
     <ClCompile Include="Hashing.cpp" />
     <ClCompile Include="Hash.cpp" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Producto.cpp" />
+    <ClCompile Include="Registro.cpp" />
     <ClCompile Include="Sundays-Cli.cpp" />
     <ClCompile Include="Usuario.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArbolAVL.h" />
     <ClInclude Include="Carrito.h" />
     <ClInclude Include="Compra.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="Crypt.h" />
     <ClInclude Include="DataFrame.h" />
     <ClInclude Include="helpers.h" />
@@ -150,12 +154,16 @@
     <ClInclude Include="Historial.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="constantes.h" />
+    <ClInclude Include="Login.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Producto.h" />
+    <ClInclude Include="Registro.h" />
+    <ClInclude Include="TreeProduct.h" />
     <ClInclude Include="Usuario.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="comida.csv" />
+    <None Include="usuarios.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
