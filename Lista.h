@@ -64,7 +64,7 @@ public:
     Iterador<T> begin() const {
         return Iterador<T>(start);
     }
-    size_t getSize() { return this->size; }
+    size_t getSize() const { return this->size; }
     Iterador<T> end() const {
         return Iterador<T>(nullptr);
     }
@@ -82,7 +82,18 @@ public:
 
         return current->element;
     }
+    Iterador<T> find(const T& elemento) const {
+        Nodo<T>* current = start;
 
+        while (current != nullptr) {//recorre hasta el final 
+            if (current->element == elemento) {
+                return Iterador<T>(current);//en caso lo encuentr lo devuelve
+            }
+            current = current->next;//sino sigue con el siguiente
+        }
+        //sino encuentra retorna nulo
+        return end();
+    }
     void push_frontV1(T e) {//Sin depurar
         if (start == nullptr) {
             Nodo<T>* _new = new Nodo<T>(e);
@@ -204,6 +215,37 @@ public:
         }
 
         --size;
+    }
+    void remove(const T& elemento) {
+        Nodo<T>* tmp = start;
+        Nodo<T>* previo = nullptr;
+
+        while (tmp != nullptr) {
+            if (tmp->element == elemento) {
+                //el nodo a eliminar es el primer nodo
+                if (previo == nullptr) {
+                    start = tmp->next;
+                }
+                //cuando no es el primero ni el ultimo
+                else {
+                    previo->next = tmp->next;
+                    if (tmp->next == nullptr) {
+                        tail = previo;
+                    }
+                }
+                // el nodo a eliminar es el último nodo
+                if (tmp == tail) {
+                    tail = previo;
+                }
+
+                delete tmp;
+                size--;
+                return;
+            }
+
+            previo = tmp;
+            tmp = tmp->next;
+        }
     }
     void delete_inPos(size_t posicion) {
         // Verifica si la posición es válida
