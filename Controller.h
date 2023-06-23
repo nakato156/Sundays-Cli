@@ -1,13 +1,23 @@
 #pragma once
-#include "TreeProduct.h"
+#include "TreeAVLProduct.h"
+#include "TreeBSTProduct.h"
 
 class Controller {
 public:
 	Controller() = default;
-	TreeProduct tp;
+	TreeAVLProduct tp; 
+	TreeBSTProduct BST; 
 	void runAVLTree() {
-		tp.simulateTreeN(); 
-		tp.simulateTreeP(); 
-		tp.init(); 
+		int eleccion; 
+		cout << "Desea probar con: " << endl;
+		cout << "1) ALV TREE: " << endl;
+		cout << "2) BST TREE: " << endl;
+		cin >> eleccion; 
+		if (eleccion == 1) {
+			tp.init();  
+		}
+		else {
+			BST.initBST();  
+		}
 	}
 };

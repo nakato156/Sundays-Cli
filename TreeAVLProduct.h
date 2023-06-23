@@ -3,7 +3,7 @@
 #include "Producto.h"
 using namespace std;
 
-class TreeProduct {
+class TreeAVLProduct {
 	ArbolAVL<Producto>* treeName;
 	ArbolAVL<Producto>* treePrecio;
 	void(*imprimir)(Producto);
@@ -11,7 +11,7 @@ class TreeProduct {
 	short(*criterioP)(Producto, Producto); //precio
 	short(*criterioC)(Producto, Producto); //categoria
 public:
-	TreeProduct() {
+	TreeAVLProduct() {
 		imprimir = [](Producto p)->void {cout << p.getNombre() << "\t" << p.getCategoria() << "\t" << p.getPrecio() << endl;  };
 		criterioN = [](Producto a, Producto b) ->short {
 			if (a.getNombre().compare(b.getNombre()) < 0) return -1;
@@ -48,7 +48,7 @@ public:
 		treePrecio->Insertar(Producto("20956", "Pato", "Principal", 35));
 	}
 
-	void menuArboles(ArbolAVL<Producto>* tree) {
+	void menuArbolAVL(ArbolAVL<Producto>* tree) {
 		int seleccion;
 		cout << "Ingrese la opcion que desee realizar: " << endl;
 		cout << "1) Impresion inOrden de elementos: " << endl;
@@ -57,7 +57,6 @@ public:
 		cout << "4) El arbol es perfecto? " << endl;
 		cout << "5) El arbol esta completo? " << endl;
 		cout << "6) Buscar " << endl; 
-		cout << "7) Ejecturar Tests " << endl; 
 		cin >> seleccion;
 		switch (seleccion) {
 		case 1: {
@@ -116,11 +115,6 @@ public:
 			}
 			break;
 		}
-		case 7: {
-			//ACA VA LA CLASE TEST
-			cout << "TEST" << endl;
-			break;
-		}
 		}
 	}
 
@@ -130,8 +124,12 @@ public:
 		cout << "1) Arbol insertado por precio: " << endl;
 		cout << "2) Arbol insertado por nombre: " << endl; cin >> eleccion;
 		if (eleccion == 1) {
-			menuArboles(treePrecio);
+			simulateTreeP(); 
+			menuArbolAVL(treePrecio);
 		}
-		else { menuArboles(treeName); }
+		else { 
+			simulateTreeN(); 
+			menuArbolAVL(treeName); 
+		}
 	}
 };
