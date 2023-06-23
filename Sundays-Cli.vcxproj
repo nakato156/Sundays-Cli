@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArbolAVL.h" />
+    <ClInclude Include="ArbolBST.h" />
     <ClInclude Include="Carrito.h" />
     <ClInclude Include="Compra.h" />
     <ClInclude Include="Controller.h" />
@@ -158,7 +159,8 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="Registro.h" />
-    <ClInclude Include="TreeProduct.h" />
+    <ClInclude Include="TreeAVLProduct.h" />
+    <ClInclude Include="TreeBSTProduct.h" />
     <ClInclude Include="Usuario.h" />
   </ItemGroup>
   <ItemGroup>

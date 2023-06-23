@@ -95,7 +95,7 @@
     <ClInclude Include="helpers.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="TreeProduct.h">
+    <ClInclude Include="TreeAVLProduct.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ArbolAVL.h">
@@ -108,6 +108,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Registro.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ArbolBST.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeBSTProduct.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

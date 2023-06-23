@@ -40,6 +40,11 @@ public:
 	bool operator>(const Producto& otroProducto) const {
 		return precio > otroProducto.precio;
 	}
+
+	bool operator-(const Producto& otroProducto) const {
+		return precio - otroProducto.getPrecio(); 
+	}
+
 	//sobrecarga para coutear
 	friend ostream& operator<<(ostream& os, const Producto& producto) {
 		os << producto.nombre << " " << producto.categoria << " " << producto.precio << endl;
