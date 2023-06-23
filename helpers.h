@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #ifndef FUNCS_H
 #define FUNCS_H
 #include <vector>
@@ -12,9 +11,11 @@
 #include "Lista.h"
 #include "constantes.h"
 #include "Producto.h"
+#include "Categoria.h"
 
 using namespace std;
-map<string, Lista<Producto>> clasificarPlatos();
+using MapadeCate = std::map<Categoria, Lista<Producto>, Categoria::CategoriaComparer>;
+MapadeCate clasificarPlatos();
 string inputPassword();
 void printSelectLine(const HANDLE hConsole, const vector<string>, const int selectedLine = 0, const WORD color = 7);
 void printColoredLine(const HANDLE hConsole, const vector<pair<string, WORD>>);
