@@ -19,7 +19,6 @@ public:
 		for (int i = 0; i < data.size(); i++) {
 			auto fila = data[i];
 			Producto producto = Producto(fila["Id"], fila["Nombre"], fila["Tipo"], precio);
-			cout << i << endl;
 			treeBST.insertar(producto);
 		}
 	}

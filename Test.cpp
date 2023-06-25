@@ -1,5 +1,20 @@
 #include "Test.h"
 
+TreeAVLProduct Test::llenarAVLP() {  
+	TreeAVLProduct AVLtreeP;
+	AVLtreeP.simulateTreeP();
+	return AVLtreeP;
+}
+TreeAVLProduct Test::llenarAVLN() {
+	TreeAVLProduct AVLtreeN;
+	AVLtreeN.simulateTreeN();
+	return AVLtreeN;
+}
+TreeBSTProduct Test::llenarBST() {
+	TreeBSTProduct BSTtree;
+	BSTtree.simulateBSTtree();
+	return BSTtree;
+}
 void Test::exportar(string sufijo, chrono::duration<double>tiempo1, chrono::duration<double>tiempo2, chrono::duration<double>tiempo3) {
 	ofstream archivo("resultados" + sufijo + ".txt");
 	if (archivo.is_open()) {
@@ -13,19 +28,20 @@ void Test::exportar(string sufijo, chrono::duration<double>tiempo1, chrono::dura
 }
 //INSERCION ENTRE LOS DOS TIPOS DE ARBOLES
 void Test::compararInsercion() {
+	cout << "Insertando: " << endl; 
 	chrono::time_point<std::chrono::system_clock> start1, end1, start2, end2, start3, end3;
 	//insercion en AVL por nombre
 	start1 = chrono::system_clock::now();
-	treeP.simulateTreeN();
+	treeP = llenarAVLN(); 
 	end1 = chrono::system_clock::now();
 	//insercion en AVL por precio
 	start2 = chrono::system_clock::now();
-	treeP.simulateTreeP();
+	treeP = llenarAVLP();
 	end2 = chrono::system_clock::now();
 	//insercion en BST
 	start3 = chrono::system_clock::now();
-	bstP.simulateBSTtree();
-	end3 = chrono::system_clock::now();
+	bstP = llenarBST(); 
+ 	end3 = chrono::system_clock::now();
 
 	chrono::duration<double> tiempo1 = end1 - start1;
 	chrono::duration<double> tiempo2 = end2 - start2;
@@ -35,6 +51,7 @@ void Test::compararInsercion() {
 }
 
 void Test::compararBusqueda(Producto producto) {
+	cout << "comparando" << endl; 
 	chrono::time_point<std::chrono::system_clock> start1, end1, start2, end2, start3, end3;
 	//busqueda en AVL de nombre
 	start1 = chrono::system_clock::now();
