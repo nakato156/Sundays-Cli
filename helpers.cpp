@@ -1,7 +1,8 @@
 #include "helpers.h"
 
-map<string, Lista<Producto>> clasificarPlatos() {
-	map<string, Lista<Producto>> categoriasPlatos; // Mapa para almacenar las listas de platos por categoría
+
+MapadeCate clasificarPlatos() {
+	MapadeCate categoriasPlatos; // Mapa para almacenar las listas de platos por categoría
 
 	ifstream archivo("comida.csv");
 	string linea;
