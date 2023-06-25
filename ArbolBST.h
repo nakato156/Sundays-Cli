@@ -11,6 +11,7 @@ public:
 	T e;
 	NodoT* izquierda;
 	NodoT* dererecha;
+	NodoT() = default; 
 	NodoT(T e) { 
 		izquierda = nullptr;
 		dererecha = nullptr;
@@ -25,15 +26,28 @@ private:
 	vector<T> vec;
 
 	bool _insertar(NodoT<T>*& nodo, T e) {
+		NodoT<T>* newNode = new NodoT<T>(); 
+		newNode->e = e;
+
 		if (nodo == nullptr) {
-			nodo = new NodoT<T>(e);
+			nodo = newNode;
+			return true;
 		}
-		else if (e < nodo->e) {
-			return _insertar(nodo->izquierda, e);
+		NodoT<T>* parent = nullptr; 
+		while (nodo != nullptr) {
+			parent = nodo;
+			if (e < nodo->e)
+				nodo = nodo->izquierda;
+			else if (e > nodo->e)
+				nodo = nodo->dererecha; 
+			else
+				return false; // El elemento ya existe en el árbol
 		}
-		else if (e >= nodo->e) {
-			return _insertar(nodo->dererecha, e);
-		}
+		if (e < parent->e)
+			parent->izquierda = newNode;
+		else
+			parent->dererecha = newNode; 
+		return true;
 	}
 
 	void _enOrden(NodoT<T>* nodo) {
