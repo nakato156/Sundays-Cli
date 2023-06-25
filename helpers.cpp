@@ -92,3 +92,17 @@ TECLA getTecla() {
 		}
 	}
 }
+
+pair<int, int> selectOpcion(int min_x, int max_x, int min_y, int max_y) {
+	int x = 0, y = 0;
+
+	while (true) {
+		TECLA tecla = getTecla();
+		if (tecla == TECLA::K_ABAJO && y + 1 < max_y) y++;
+		else if (tecla == TECLA::K_ARRIBA && y - 1 >= min_y) y--;
+		else if (tecla == TECLA::K_DER && x + 1 < max_x) x++;
+		else if (tecla == TECLA::k_IZQ && x - 1 > min_x) x++;
+		else if (tecla == TECLA::K_ENTER) return make_pair(x, y);
+		gotoxy(x, y);
+	}
+}

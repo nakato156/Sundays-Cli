@@ -30,3 +30,29 @@ int Vistas::pagar(HANDLE hConsole, CarritoDeCompras& carrito) {
 	}
 	return total;
 }
+
+void Vistas::admin(HANDLE hConsole, Admin admin) {
+	cout << "1) Ver estadisticas" << endl
+		<< "2) Agregar admin" << endl
+		<< "3) Ver admins" << endl
+		<< "4) Ejecutar test" << endl
+		<< "5) Salir";
+	gotoxy(0, 0);
+
+	pair<int, int> posicion = selectOpcion(0, 0, 0, 4);
+	int opcion = posicion.second + 1;
+
+	if (opcion == 5) exit(EXIT_SUCCESS);
+	
+	if (opcion == 1) admin.estadisticas();
+	else if (opcion == 2) {
+		system("cls");
+		string nombre, email, pass;
+		cout << "Ingrese los datos\n";
+		cout << "Nombre: "; cin >> nombre;
+		cout << "email: "; cin >> email;
+		cout << "pass: "; pass = inputPassword();
+		admin.agregarAdmin(email, nombre, pass);
+	}
+	else if (opcion == 3) admin.verAdmins();
+	else if (opcion == 4) admin.test();

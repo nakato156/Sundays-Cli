@@ -30,9 +30,11 @@ void App::init() {
     system("cls");
 
     if (usuario.isAdmin()) {
-        Menu menu;
-        menu.initMenu(carrito);
+        Vistas::admin(hConsole);
+        exit(EXIT_SUCCESS);
     }
+    Menu menu;
+    menu.initMenu(carrito);
     
     system("cls");
 

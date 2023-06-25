@@ -4,9 +4,11 @@
 #include <Windows.h>
 #include "Carrito.h"
 #include "helpers.h"
+#include "Admin.h"
 
 namespace Vistas {
 	int pagar(HANDLE, CarritoDeCompras&);
+	void admin(HANDLE, Admin);
 }
 
 #endif
