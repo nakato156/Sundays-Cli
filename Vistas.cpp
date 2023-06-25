@@ -32,7 +32,7 @@ void Vistas::pagar(HANDLE hConsole, CarritoDeCompras& carrito, Usuario& usuario)
 	compra.Guardar();
 }
 
-void Vistas::admin(HANDLE hConsole, Admin& admin) {
+void Vistas::admin(HANDLE hConsole, Admin admin) {
 	cout << "1) Ver estadisticas" << endl
 		<< "2) Agregar admin" << endl
 		<< "3) Ver admins" << endl
