@@ -6,10 +6,12 @@
 #include "helpers.h"
 #include "Admin.h"
 #include "Descuento.h"
+#include "Compra.h"
 
 namespace Vistas {
-	int pagar(HANDLE, CarritoDeCompras&);
-	void admin(HANDLE, Admin);
+	void pagar(HANDLE, CarritoDeCompras&, Usuario&);
+	void admin(HANDLE, Admin&);
+	void historial(HANDLE, Usuario&);
 }
 
 #endif

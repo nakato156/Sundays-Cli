@@ -11,11 +11,5 @@ int main() {
     App app(hConsole, usuario);
 
     app.init();
-
-    system("cls");
-    if (!usuario.isLogged()) {
-        cout << "Ha ocurrido un error" << endl;
-        exit(EXIT_FAILURE);
-    }
     return 0;
 }

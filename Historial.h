@@ -14,20 +14,19 @@ public:
 	HistorialCompras(Usuario client, const CarritoDeCompras& carrito) :Compra(client, carrito) {}
 	Lista<Compra> load(Lista<Producto>& productos, Usuario cliente) { //cargar al historial de compras
 		DataFrame file;
-		file.read_csv(filename);	//2
+		file.read_csv(filename);
 		//historial csv
-		int size = file.size();						//2
-		for (int i = 0; i < size; i++) {			//1+n(1+interna+2)
-			auto fila = file[i];					//2
+		int size = file.size();
+		for (int i = 0; i < size; i++) {
+			auto fila = file[i];
 			if (fila["uuid"] != cliente.getUUID()) continue;
-			std::string data[] = { fila["uuid"], 
-				fila["cliente_uuid"], 
+			std::string data[] = { fila["uuid"],
+				fila["cliente_uuid"],
 				fila["productos"],
 				fila["monto"],
 				fila["fecha"]
-			};										//6
-			
-			historial.push_back(Compra::load(productos, data)); //1
+			};
+			historial.push_back(Compra::load(productos, data));
 		}
 	}
 };

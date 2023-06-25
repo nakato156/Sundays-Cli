@@ -23,5 +23,5 @@ void printColoredLine(const HANDLE hConsole, const vector<pair<string, WORD>>);
 void gotoxy(int x, int y);
 void gotoxy(int x, int y, COORD&);
 TECLA getTecla();
-pair<int, int> selectOpcion(int min_x = 0, int max_x = 0, int min_y = 0, int max_y = 0);
+pair<int, int> selectOpcion(int min_x = 0, int max_x = 0, int min_y = 0, int max_y = 0, int salto = 0);
 #endif
