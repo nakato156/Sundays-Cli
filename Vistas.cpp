@@ -40,7 +40,7 @@ void Vistas::admin(HANDLE hConsole, Admin admin) {
 		<< "5) Salir";
 	gotoxy(0, 0);
 
-	pair<int, int> posicion = selectOpcion(0, 0, 0, 4);
+	pair<int, int> posicion = selectOpcion(0, 0, 0, 5,1);
 	int opcion = posicion.second + 1;
 
 	if (opcion == 5) exit(EXIT_SUCCESS);
