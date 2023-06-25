@@ -5,7 +5,6 @@
 #include "Categoria.h"
 #include <unordered_map>
 #include <unordered_set>
-#include "helpers.cpp"
 
 class Estadisticas {
 public:

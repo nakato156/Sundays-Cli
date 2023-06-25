@@ -28,7 +28,10 @@ void App::init() {
     else login();
     
     system("cls");
-
+    if (!usuario.isLogged()) {
+        cout << "Datos incorrectos" << endl;
+        exit(EXIT_FAILURE);
+    }
     if (usuario.isAdmin()) {
         Vistas::admin(hConsole, usuario);
         exit(EXIT_SUCCESS);
@@ -38,14 +41,11 @@ void App::init() {
     
     system("cls");
 
-    cout << "Pagar\t\t    Salir" << endl;
-    y = 0;
-    while (true) {
-        TECLA tecla = getTecla();
-        if (tecla == TECLA::K_ENTER) break;
-        y = tecla == TECLA::K_DER ? 1 : 0;
-        y ? gotoxy(20, 0) : gotoxy(0, 0);
-    }
-    if (y) exit(EXIT_SUCCESS);
-    Vistas::pagar(hConsole, carrito);
+    cout << "Pagar\t\t    Historial\t\tSalir" << endl;
+
+    pair<int, int> pos = selectOpcion(0, 3, 0, 0, 20);
+    int opcion = pos.first;
+    if (opcion == 2) exit(EXIT_SUCCESS);
+    else if (opcion == 1);
+    else if(opcion == 0) Vistas::pagar(hConsole, carrito, usuario);
 }

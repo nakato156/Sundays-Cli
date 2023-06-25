@@ -1,6 +1,6 @@
 #include "Vistas.h"
 
-int Vistas::pagar(HANDLE hConsole, CarritoDeCompras& carrito) {
+void Vistas::pagar(HANDLE hConsole, CarritoDeCompras& carrito, Usuario& usuario) {
 	system("cls");
 	printColoredLine(hConsole, { make_pair("Carrito de compras\n", 6) });
 	Lista<Item> productos = carrito;
@@ -8,14 +8,15 @@ int Vistas::pagar(HANDLE hConsole, CarritoDeCompras& carrito) {
 	for (int i = 0; i < productos.getSize(); i++) {
 		int cant = productos.at(i).cant;
 		std::cout << cant; gotoxy(10, i + 1);
-		std::cout << productos.at(i).producto.getNombre(); gotoxy(30, i + 1);
+		std::cout << productos.at(i).producto.getNombre(); gotoxy(50, i + 1);
 		std::cout << productos.at(i).producto.getPrecio() * cant << "\n\r";
 	}
 	std::cout << "-------------------------------------------------\n\r"
-		<< "Total\t\t\t" << carrito.total() << "\n\r";
-	std::cout << std::endl;
+		<< "Total\t\t\t" << carrito.total() << "\n\r\n";
 
 	float total = carrito.total();
+	if (!total) return;
+
 	string cod_desc;
 	cout << "Ingrese un cupon de descuento: "; cin >> cod_desc;
 	if (cod_desc != "\n") {
@@ -27,7 +28,8 @@ int Vistas::pagar(HANDLE hConsole, CarritoDeCompras& carrito) {
 			cout << "Total: " << total << endl;
 		}
 	}
-	return total;
+	Compra compra(usuario, carrito);
+	compra.Guardar();
 }
 
 void Vistas::admin(HANDLE hConsole, Admin admin) {
@@ -55,4 +57,8 @@ void Vistas::admin(HANDLE hConsole, Admin admin) {
 	}
 	else if (opcion == 3) admin.verAdmins();
 	else if (opcion == 4) admin.test();
+}
+
+void Vistas::historial(HANDLE hConsole, Usuario& usuario) {
+
 }
