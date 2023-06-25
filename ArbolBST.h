@@ -11,7 +11,7 @@ public:
 	T e;
 	NodoT* izquierda;
 	NodoT* dererecha;
-	NodoT() = default; 
+	NodoT() = default;  
 	NodoT(T e) { 
 		izquierda = nullptr;
 		dererecha = nullptr;
@@ -33,6 +33,7 @@ private:
 			nodo = newNode;
 			return true;
 		}
+
 		NodoT<T>* parent = nullptr; 
 		while (nodo != nullptr) {
 			parent = nodo;
@@ -78,6 +79,7 @@ private:
 	void _BSTtreeToVector(NodoT<T>* nodo) {
 		if (nodo != nullptr) {
 			vec.push_back(nodo->e);
+			cout << nodo->e<< endl; 
 			_BSTtreeToVector(nodo->izquierda);
 			_BSTtreeToVector(nodo->dererecha);
 		}
@@ -106,11 +108,11 @@ private:
 		}
 	}
 
-	int _altura() {
+	int _altura(NodoT<T>* nodo) {
 		//La altura del árbol es:
 		//	0 si es vacío
 		//	la mayor de las alturas por la izquierda y por la derecha, las cuáles son 0 si son vacías ó 1 + la altura por la izq(o der) en caso contrario
-		NodoT<T>* nodo = raiz;
+		 
 		if (nodo == nullptr)
 			return 0;
 		else
@@ -144,29 +146,6 @@ private:
 			}
 		}
 		return -1;
-	}
-
-	int _interpolation_search(int n, T X)
-	{
-		int lo = 0;
-		int hi = n - 1;
-		int mid;
-
-		while ((vec[hi] != vec[lo]) && (X >= vec[lo]) && (X <= vec[hi])) {
-			mid = lo + ((X - vec[lo]) * (hi - lo) / (vec[hi] - vec[lo]));
-
-			if (vec[mid] < X)
-				lo = mid + 1;
-			else if (X < vec[mid])
-				hi = mid - 1;
-			else
-				return mid;
-		}
-
-		if (X == vec[lo])
-			return lo;
-		else
-			return -1;
 	}
 
 	int _obtenerProfundidad(NodoT<T>* nodo) {//caso0 
@@ -223,145 +202,7 @@ private:
 		}
 		return actual;
 	}
-	int _nextGap(int gap)
-	{
-		// Shrink gap by Shrink factor
-		gap = (gap * 10) / 13;
 
-		if (gap < 1)
-			return 1;
-		return gap;
-	}
-
-	void _combSort(int n, function<bool(T, T)> comparador) {  // n es la cantidad de elementos que tiene el vector
-		// Initialize gap
-		int gap = n;
-
-		// Initialize swapped as true to make sure that
-		// loop runs
-		bool swapped = true;
-
-		// Keep running while gap is more than 1 and last
-		// iteration caused a swap
-		while (gap != 1 || swapped == true)
-		{
-			// Find next gap
-			gap = _nextGap(gap);
-
-			// Initialize swapped as false so that we can
-			// check if swap happened or not
-			swapped = false;
-
-			// Compare all elements with current gap
-			for (int i = 0; i < n - gap; i++)
-			{
-				if (comparador(vec[i], vec[i + gap]))
-				{
-					swap(vec[i], vec[i + gap]);
-					swapped = true;
-				}
-			}
-		}
-	}
-
-	int _partition(int low, int high, function<bool(T, T)> comparador) {
-		T pivote = vec[high];
-		int i = (low - 1);
-
-		for (int j = low; j <= high - 1; j++) {
-			if (comparador(vec[j], pivote)) {
-				i++;
-				swap(vec[i], vec[j]);
-			}
-		}
-		swap(vec[i + 1], vec[high]);
-		return (i + 1);
-	}
-
-	void _quickSort(int low, int high, function<bool(T, T)> comparador) {
-		if (low < high) {
-			int pi = _partition(vec, low, high, comparador);
-
-			_quickSort(vec, low, pi - 1, comparador);
-			_quickSort(vec, pi + 1, high, comparador);
-		}
-	}
-
-	void _merge(int left, int mid, int right, function<bool(T, T)> comparador) {
-		int n1 = mid - left + 1;
-		int n2 = right - mid;
-
-		vector<T> leftArr(n1);
-		vector<T> rightArr(n2);
-
-		for (int i = 0; i < n1; i++) {
-			leftArr[i] = vec[left + i];
-		}
-
-		for (int j = 0; j < n2; j++) {
-			rightArr[j] = vec[mid + 1 + j];
-		}
-
-		int i = 0, j = 0, k = left;
-		while (i < n1 && j < n2) {
-			if (comparador(leftArr[i], rightArr[j])) {
-				vec[k] = leftArr[i];
-				i++;
-			}
-			else {
-				vec[k] = rightArr[j];
-				j++;
-			}
-			k++;
-		}
-
-		while (i < n1) {
-			vec[k] = leftArr[i];
-			i++;
-			k++;
-		}
-
-		while (j < n2) {
-			vec[k] = rightArr[j];
-			j++;
-			k++;
-		}
-	}
-
-	void _mergeSort(int left, int right, function<bool(T, T)> comparador) {
-		if (left < right) {
-			int mid = left + (right - left) / 2;
-
-			_mergeSort(left, mid, comparador);
-			_mergeSort(mid + 1, right, comparador);
-			_merge(left, mid, right, comparador);
-		}
-	}
-
-	int _binarySearch(int lo, int hi, T x)
-	{
-		while (lo <= hi) {
-			int m = lo + (hi - lo) / 2;
-			if (vec[m] == x)
-				return m;
-			if (vec[m] < x)
-				lo = m + 1;
-			else
-				hi = m - 1;
-		}
-		return -1;
-	}
-
-	int _exponentialSearch(int n, T x)
-	{
-		if (vec[0] == x)
-			return 0;
-		int i = 1;
-		while (i < n && vec[i] <= x)
-			i = i * 2;
-
-		return _binarySearch(i / 2, min(i, n - 1), x);
-	}
 	NodoT<T>* _busquedaBST(NodoT<T>* nodo, function <bool(T)>condition) {
 		if (nodo == nullptr) return nullptr;
 		if (condition(nodo->e)) return nodo;
@@ -386,52 +227,12 @@ public:
 
 	int altura() { return _altura(raiz); }
 
-	void postOrden() { _postOrden(raiz); }
-
 	NodoT<T>* busquedaBST(function<bool(T)>buscador) { return _busquedaBST(raiz, buscador); }
-
-	int binarySearch(int low, int high, T x) {
-		return _binarySearch(low, high, x);
-	}
-
-	int exponencialSearch(int n, T x) {
-		return _exponentialSearch(n, x);
-	}
-
-	int ternarySearch(int left, int right, T target) {
-		if (right >= left) {
-			int mid1 = left + (right - left) / 3;
-			int mid2 = right - (right - left) / 3;
-
-			if (vec[mid1] == target) {
-				return mid1;
-			}
-
-			if (vec[mid2] == target) {
-				return mid2;
-			}
-
-			if (target < vec[mid1]) {
-				return ternarySearch(left, mid1 - 1, target);
-			}
-			else if (target > vec[mid2]) {
-				return ternarySearch(mid2 + 1, right, target);
-			}
-			else {
-				return ternarySearch(mid1 + 1, mid2 - 1, target);
-			}
-		}
-		return -1;
-	}
 
 	void binSearch(T e) {
 		int resultado = _binSearch(raiz, e);
 		if (resultado == -1) cout << "Elemento no encontrado " << endl;
 		else cout << "Elemento encontrado " << endl;
-	}
-
-	int interpolarSearch(T X) {
-		return _interpolation_search(vec.size(), X);
 	}
 
 	void obtenerProfundidad() {
@@ -442,17 +243,5 @@ public:
 	NodoT<T>* encontrarSiguiente() { return _encontrarSiguiente(raiz); }
 
 	NodoT<T>* eliminarNodo(T eliminar) { return _eliminarNodo(raiz, eliminar); }
-	int nextGap(int gap) { return _nextGap(gap); }
 
-	void combSort(int n, function<bool(T, T)> comparador) { _combSort(n, comparador); }
-
-	int partition(int low, int high, function<bool(T, T)> comparador) { _partition(low, high, comparador); }
-
-	void quickSort(int low, int high, function<bool(T, T)> comparador) {
-		_quickSort(low, high, comparador);		//low es 0, high es tamanio del arreglo - 1 y el comparador el operador		
-	}
-
-	void merge(int left, int mid, int right, function<bool(T, T)> comparador) { _merge(left, mid, right, comparador); }
-
-	void mergeSort(int left, int right, function<bool(T, T)> comparador) { _mergeSort(left, right, comparador); }
 };

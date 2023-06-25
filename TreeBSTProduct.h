@@ -8,18 +8,20 @@ using namespace std;
 class TreeBSTProduct {
 	friend class Test; 
 	DataFrame data;  
-	ArbolB<Producto> treeBST;  
+	ArbolB<Producto>* treeBST;  
 public: 
 	TreeBSTProduct(){}
 	~TreeBSTProduct(){}
 
 	void simulateBSTtree() {
+		treeBST = new ArbolB<Producto>; 
 		data.read_csv(filenameComida);
 		double precio = 0;
 		for (int i = 0; i < data.size(); i++) {
 			auto fila = data[i];
 			Producto producto = Producto(fila["Id"], fila["Nombre"], fila["Tipo"], precio);
-			treeBST.insertar(producto);
+			treeBST->insertar(producto);
+			//cout << i << "" << producto.getNombre() << " " << producto.getCategoria() << "" << producto.getPrecio() << endl;   
 		}
 	}
 	/*void menuTreeBST() {
