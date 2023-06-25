@@ -16,6 +16,7 @@
 using namespace std;
 using MapadeCate = std::map<Categoria, Lista<Producto>, Categoria::CategoriaComparer>;
 MapadeCate clasificarPlatos();
+Categoria buscarCategoriaPorCodigo(const MapadeCate& categoriasPlatos, const string& codigo);
 string inputPassword();
 void printSelectLine(const HANDLE hConsole, const vector<string>, const int selectedLine = 0, const WORD color = 7);
 void printColoredLine(const HANDLE hConsole, const vector<pair<string, WORD>>);
