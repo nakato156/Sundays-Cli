@@ -1,9 +1,11 @@
 #pragma once
+#ifndef ADMIN_H
+#define ADMIN_H
+#include "Hash.h"
 #include "Usuario.h"
+#include "DataFrame.h"
 #include "Estadisticas.h"
 #include "Test.h"
-#include "Hash.h"
-#include "DataFrame.h"
 
 class Admin : public Usuario {
 	Usuario& usuario;
@@ -44,3 +46,4 @@ public:
 	}
 
 };
+#endif

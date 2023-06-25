@@ -145,6 +145,7 @@
     <ClCompile Include="Vistas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Admin.h" />
     <ClInclude Include="ArbolAVL.h" />
     <ClInclude Include="ArbolBST.h" />
     <ClInclude Include="Carrito.h" />

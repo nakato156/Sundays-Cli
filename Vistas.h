@@ -5,6 +5,7 @@
 #include "Carrito.h"
 #include "helpers.h"
 #include "Admin.h"
+#include "Descuento.h"
 
 namespace Vistas {
 	int pagar(HANDLE, CarritoDeCompras&);

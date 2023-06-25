@@ -1,5 +1,4 @@
 #include "Vistas.h"
-#include "Descuento.h"
 
 int Vistas::pagar(HANDLE hConsole, CarritoDeCompras& carrito) {
 	system("cls");
@@ -43,7 +42,7 @@ void Vistas::admin(HANDLE hConsole, Admin admin) {
 	int opcion = posicion.second + 1;
 
 	if (opcion == 5) exit(EXIT_SUCCESS);
-	
+
 	if (opcion == 1) admin.estadisticas();
 	else if (opcion == 2) {
 		system("cls");
@@ -56,3 +55,4 @@ void Vistas::admin(HANDLE hConsole, Admin admin) {
 	}
 	else if (opcion == 3) admin.verAdmins();
 	else if (opcion == 4) admin.test();
+}

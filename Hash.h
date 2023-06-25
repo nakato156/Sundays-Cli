@@ -1,4 +1,6 @@
 #pragma once
+#ifndef HASH_H
+#define HASH_H
 #include "Hashing.h"
 
 using namespace std;
@@ -175,4 +177,4 @@ private:
 		}
 	}
 };
-
+#endif

@@ -1,6 +1,4 @@
 #include "Usuario.h"
-#include "Crypt.h"
-#include "DataFrame.h"
 
 using namespace std;
 

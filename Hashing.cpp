@@ -1,17 +1,5 @@
 #include "Hashing.h"
 
-template <typename T>
-size_t Hashing::dinamicHashing(const T& key, int size){
-	size_t hash = 0;
-	size_t tamBytesKey = sizeof(T);
-	const unsigned char* data = reinterpret_cast<const unsigned char*>(&key);
-
-	for (int i = 0; i < tamBytesKey; i++)
-		hash ^= data[i];
-
-	return hash % size;
-}
-
 size_t Hashing::basicHashing(const char* key, int size) {
 	unsigned long long hash = 0;
 

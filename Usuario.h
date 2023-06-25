@@ -1,5 +1,6 @@
 #pragma once
 #include "Crypt.h"
+#include "DataFrame.h"
 #include <iostream>
 #include <string>
 
@@ -9,7 +10,7 @@ class Usuario{
 	int rol = -1;
 public:
 	Usuario();
-	Usuario(string uuid, string name, string email_) : UUID(uuid), nombre(name), email(email_) {};
+	Usuario(std::string uuid, std::string name, std::string email_) : UUID(uuid), nombre(name), email(email_) {};
 	std::string getUUID();
 	std::string getNombre();
 	bool isLogged();

@@ -13,7 +13,7 @@ class Estadisticas {
 		file.read_csv("historial.csv");
 
 		int total_peidos = file.size();
-		std::unordered_map<Categoria, int> group_by_cat; 
+		//std::unordered_map<Categoria, int> group_by_cat; 
 		// cuentas la cantidad de platos vendidos por categoria
 		// cuentas los clientes que hay en total (solamente los únicos)
 		// Cual es el plato mas vendido

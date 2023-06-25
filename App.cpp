@@ -30,7 +30,7 @@ void App::init() {
     system("cls");
 
     if (usuario.isAdmin()) {
-        Vistas::admin(hConsole);
+        Vistas::admin(hConsole, usuario);
         exit(EXIT_SUCCESS);
     }
     Menu menu;
