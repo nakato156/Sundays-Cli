@@ -30,7 +30,6 @@ void CarritoDeCompras::agregar(const Item& item) {//agregar
 void CarritoDeCompras::agregar(const Producto& prod) { //const hace que el objeto no cambie su valor
 	Item item{ prod, 1 };
 	auto res = productos.find(item, [](Item& elemento, Item& buscado) {
-		cout << elemento.producto.getCodigo() << " ---> " << buscado.producto.getCodigo() << endl;
 		return elemento.producto.getCodigo() == buscado.producto.getCodigo();
 	});
 	if (res == productos.end())

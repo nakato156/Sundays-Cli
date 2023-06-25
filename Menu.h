@@ -30,7 +30,7 @@ public:
 
 	void mostrarMenuLista(Lista<Producto>& menu); 
 
-	Lista<Item> MenuUserV2(DataFrame data);
+	CarritoDeCompras MenuUserV2(DataFrame data);
 
 	void initMenu(CarritoDeCompras&);
 	int selectOpcion();
