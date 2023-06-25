@@ -34,7 +34,7 @@ void App::init() {
         menu.initMenu(carrito);
     }
     
-    //system("cls");
+    system("cls");
 
     cout << "Pagar\t\t    Salir" << endl;
     y = 0;

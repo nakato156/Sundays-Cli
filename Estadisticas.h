@@ -27,6 +27,14 @@ public:
 
         std::getline(file, line); // Ignorar la primera línea del encabezado
 
+		int total_peidos = file.size();
+		std::unordered_map<Categoria, int> group_by_cat; 
+		// cuentas la cantidad de platos vendidos por categoria
+		// cuentas los clientes que hay en total (solamente los únicos)
+		// Cual es el plato mas vendido
+		// promedio de consumo por cliente
+
+
         while (std::getline(file, line)) {
             std::stringstream ss(line);
             std::string uuid, cliente_uuid, productos, monto, fecha;
