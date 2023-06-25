@@ -175,8 +175,31 @@ private:
 			_AVLtreeToVector(node->der);
 		}
 	}
+	int _binSearch(Node<T>* nodo, T e) {
+		if (nodo == nullptr) {//sino se encuentra se devuelve -1
+			return -1;
+		}
 
+		if (e == nodo->elemento) {//si se encuentra se devuelve 1  
+			return 1;
+		}
+
+		if (e < nodo->elemento) { //en caso sea menor revisa a la izquierda con recursividad 
+			int result = _binSearch(nodo->izq, e);
+			if (result != -1) {
+				return result;
+			}
+		}
+		else {
+			int result = _binSearch(nodo->der, e);//lo mismo pa la derecha
+			if (result != -1) {
+				return result;
+			}
+		}
+		return -1;
+	}
 public:
+	ArbolAVL() = default; 
 	ArbolAVL(void(*nuevaFuncion)(T), short(*Comparador)(T, T)) {
 		this->impresionArbol = nuevaFuncion;
 		this->criterio = Comparador;
@@ -213,4 +236,7 @@ public:
 	Node<T>* busqueda(function <bool(T)>condition) {
 		return _busqueda(raiz, condition);
 	}
+	
+	int binSearch(T e) { return _binSearch(raiz, e); }
+
 };

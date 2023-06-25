@@ -6,78 +6,69 @@
 using namespace std; 
 
 template <class T>
-class Nodo {
+class NodoT { 
 public:
-	T elemento;
-	Nodo* izq;
-	Nodo* der;
-	Nodo(T elemento) {
-		izq = nullptr;
-		der = nullptr;
-		this->elemento = elemento;
+	T e;
+	NodoT* izquierda;
+	NodoT* dererecha;
+	NodoT(T e) { 
+		izquierda = nullptr;
+		dererecha = nullptr;
+		this->e = e; 
 	}
 };
 
 template <class T>
 class ArbolB {
 private:
-	Nodo<T>* raiz;
+	NodoT<T>* raiz;
 	vector<T> vec;
 
-	bool _insertar(Nodo<T>*& nodo, T e) {
+	bool _insertar(NodoT<T>*& nodo, T e) {
 		if (nodo == nullptr) {
-			nodo = new Nodo<T>(e);
+			nodo = new NodoT<T>(e);
 		}
-		else if (e < nodo->elemento) {
-			return _insertar(nodo->izq, e);
+		else if (e < nodo->e) {
+			return _insertar(nodo->izquierda, e);
 		}
-		else if (e >= nodo->elemento) {
-			return _insertar(nodo->der, e);
+		else if (e >= nodo->e) {
+			return _insertar(nodo->dererecha, e);
 		}
 	}
 
-	void _enOrden(Nodo<T>* nodo) {
+	void _enOrden(NodoT<T>* nodo) {
 		if (nodo == nullptr) return;
-		_enOrden(nodo->izq);
-		cout << nodo->elemento << " ";
-		_enOrden(nodo->der);
+		_enOrden(nodo->izquierda);
+		cout << nodo->e << " ";
+		_enOrden(nodo->dererecha);
 	}
 
-	void _preOrden(Nodo<T>* nodo) {
+	void _preOrden(NodoT<T>* nodo) {
 		if (nodo != nullptr) {											//primero confirmamos que el arbol no este vacio (raiz)
-			cout << nodo->elemento << " ";						//imprimimos el elemento
-			_preOrden(nodo->izq);						//recursividad pero ahora comparando el hijo izquierdo. 
-			_preOrden(nodo->der);						//recursividad con el hijo derecho
+			cout << nodo->e << " ";						//imprimimos el elemento
+			_preOrden(nodo->izquierda);						//recursividad pero ahora comparando el hijo izquierdo. 
+			_preOrden(nodo->dererecha);						//recursividad con el hijo derecho
 			//Se sigue el algoritmo original, RAIZ-IZQUIERDA-DERECHA
 		}
 	}
 
-	void _postOrden(Nodo<T>* nodo) {
+	void _postOrden(NodoT<T>* nodo) {
 		if (nodo != nullptr) {										//primero confirmamos que el arbol no este vacio (raiz)
-			_postOrden(nodo->izq);				//recursividad pero ahora comparando el hijo izquierdo. 
-			_postOrden(nodo->der);				//recursividad con el hijo derecho
-			cout << nodo->elemento << " ";					//imprimimos el elemento
+			_postOrden(nodo->izquierda);				//recursividad pero ahora comparando el hijo izquierdo. 
+			_postOrden(nodo->dererecha);				//recursividad con el hijo derecho
+			cout << nodo->e << " ";					//imprimimos el elemento
 			//Se sigue el algoritmo original, IZQUIERDA-DERECHA-RAIZ
 		}
 	}
 
-	void _BSTtreeToVector(Nodo<T>* nodo) {
+	void _BSTtreeToVector(NodoT<T>* nodo) {
 		if (nodo != nullptr) {
-			vec.push_back(nodo->elemento);
-			_BSTtreeToVector(nodo->izq);
-			_BSTtreeToVector(nodo->der);
+			vec.push_back(nodo->e);
+			_BSTtreeToVector(nodo->izquierda);
+			_BSTtreeToVector(nodo->dererecha);
 		}
 	}
-	void _printVector(const std::vector<T>& vec) {
-		cout << "[";
-		for (size_t i = 0; i < vec.size(); i++) {
-			cout << vec[i];
-			if (i != vec.size() - 1) {
-				cout << ", ";
-			}
-		}
-		cout << "]" << endl;
-	}
+
 	vector<T> _getVector() {
 		return vec;
 	}
@@ -89,14 +80,14 @@ private:
 		//La cantidad de nodos del árbol es:
 		//	0 si es vacío
 		//	1 + la cantidad de nodos por la izquierda + la cantidad de nodos por la derecha
-		Nodo<T>* nodo = raiz;
+		NodoT<T>* nodo = raiz;
 		if (nodo == nullptr)
 			return 0;
 		else
 		{
 			int ci, cd;
-			ci = _cantidad(nodo->izq);
-			cd = _cantidad(nodo->der);
+			ci = _cantidad(nodo->izquierda);
+			cd = _cantidad(nodo->dererecha);
 			return 1 + ci + cd;
 		}
 	}
@@ -105,35 +96,35 @@ private:
 		//La altura del árbol es:
 		//	0 si es vacío
 		//	la mayor de las alturas por la izquierda y por la derecha, las cuáles son 0 si son vacías ó 1 + la altura por la izq(o der) en caso contrario
-		Nodo<T>* nodo = raiz;
+		NodoT<T>* nodo = raiz;
 		if (nodo == nullptr)
 			return 0;
 		else
 		{
 			int ai, ad;
-			ai = 1 + _altura(nodo->izq);
-			ad = 1 + _altura(nodo->der);
+			ai = 1 + _altura(nodo->izquierda);
+			ad = 1 + _altura(nodo->dererecha);
 			return ai > ad ? ai : ad;
 		}
 	}
 
-	int _binSearch(Nodo<T>* nodo, T e) {
+	int _binSearch(NodoT<T>* nodo, T e) {
 		if (nodo == nullptr) {//sino se encuentra se devuelve -1
 			return -1;
 		}
 
-		if (e == nodo->elemento) {//si se encuentra se devuelve 1 
+		if (e == nodo->e) {//si se encuentra se devuelve 1 
 			return 1;
 		}
 
-		if (e < nodo->elemento) { //en caso sea menor revisa a la izquierda con recursividad 
-			int result = _binSearch(nodo->izq, e);
+		if (e < nodo->e) { //en caso sea menor revisa a la izquierda con recursividad 
+			int result = _binSearch(nodo->izquierda, e);
 			if (result != -1) {
 				return result;
 			}
 		}
 		else {
-			int result = _binSearch(nodo->der, e);//lo mismo pa la derecha
+			int result = _binSearch(nodo->dererecha, e);//lo mismo pa la derecha
 			if (result != -1) {
 				return result;
 			}
@@ -164,57 +155,57 @@ private:
 			return -1;
 	}
 
-	int _obtenerProfundidad(Nodo<T>* nodo) {//caso0 
+	int _obtenerProfundidad(NodoT<T>* nodo) {//caso0 
 		if (nodo == nullptr) { return 0; } //en caso de que el arbol este vacio
 		else
 		{
-			int profizquierda = _obtenerProfundidad(nodo->izq);
-			int profderecha = _obtenerProfundidad(nodo->der);
+			int profizquierda = _obtenerProfundidad(nodo->izquierda);
+			int profderecha = _obtenerProfundidad(nodo->dererecha);
 			if (profizquierda > profderecha) { return 1 + profizquierda; }
 			else { return 1 + profderecha; }
 
 		}
 	}
 
-	Nodo<T>* _eliminarNodo(Nodo<T>* nodo, T valor) {
+	NodoT<T>* _eliminarNodo(NodoT<T>* nodo, T valor) {
 		//en caso de que el elemento a eliminar sea la raiz o sea hoja
 		if (nodo == nullptr) {														//primero confirmamos que el arbol no este vacio (raiz)
 			return nullptr;																//si es asi retorna vacio
 		}
-		if (valor < nodo->elemento) {											//primero comparamos si el valor es menor que el elemento del primer nodo
-			nodo->izq = _eliminarNodo(nodo->izq, valor);			//si es menor, recursividad en caso del hijo izquierdo. 
+		if (valor < nodo->e) {											//primero comparamos si el valor es menor que el elemento del primer nodo
+			nodo->izquierda = _eliminarNodo(nodo->izquierda, valor);			//si es menor, recursividad en caso del hijo izquierdo. 
 			//Si el hijo izquierdo es hoja, se re asigna su puntero a nullptr
 		}
-		else if (valor > nodo->elemento) {									//si el valor es mayor que el elemento del nodo
-			nodo->der = _eliminarNodo(nodo->der, valor);			//recursividad en caso del hijo derecho. 
+		else if (valor > nodo->e) {									//si el valor es mayor que el elemento del nodo
+			nodo->dererecha = _eliminarNodo(nodo->dererecha, valor);			//recursividad en caso del hijo derecho. 
 			//Si el hijo derecho es hoja, se re asigna su puntero a nullptr
 		}
 
 		//en caso de que el elemento a eliminar tenga 1 hijo
 
 		else {
-			if (nodo->izq == nullptr) {											//si el puntero izquierdo es nullptr, quiere decir que tiene hijo derecho
-				Nodo<T>* temp = nodo->der;								//asignamos el derecho a un temporal
+			if (nodo->izquierda == nullptr) {											//si el puntero izquierdo es nullptr, quiere decir que tiene hijo derecho
+				NodoT<T>* temp = nodo->dererecha;								//asignamos el derecho a un temporal
 				delete nodo;																//eliminamos el nodo
 				return temp;																//volvemos a unir el hijo izquierdo al arbol
 			}
-			else if (nodo->der == nullptr) {									//si el puntero derecho es nullptr, quiere decir que tiene hijo izquierdo
-				Nodo<T>* temp = nodo->izq;								//asignamos el izquierdo a un temporal
+			else if (nodo->dererecha == nullptr) {									//si el puntero derecho es nullptr, quiere decir que tiene hijo izquierdo
+				NodoT<T>* temp = nodo->izquierda;								//asignamos el izquierdo a un temporal
 				delete nodo;																//eliminamos el nodo
 				return temp;																//volvemos a unir el hijo derecho al arbol
 			}
 			//en caso de que el elemento a eliminar tenga 2 hijos
-			Nodo<T>* sucesor = _encontrarSiguiente(nodo->der);					//siempre se tomara el hijo derecho ya que estos suelen ser mayores que el padre
-			nodo->elemento = sucesor->elemento;											//asignamos los valores	
-			nodo->der = _eliminarNodo(nodo->der, sucesor->elemento);		//eliminamos el nodo
+			NodoT<T>* sucesor = _encontrarSiguiente(nodo->dererecha);					//siempre se tomara el hijo derecho ya que estos suelen ser mayores que el padre
+			nodo->e = sucesor->e;											//asignamos los valores	
+			nodo->dererecha = _eliminarNodo(nodo->dererecha, sucesor->e);		//eliminamos el nodo
 		}
 		return nodo;
 	}
 	//metodo que nos servira para encontrar al siguiente
-	Nodo<T>* _encontrarSiguiente(Nodo<T>* nodo) {
-		Nodo<T>* actual = nodo;
-		while (actual->izq != nullptr) {
-			actual = actual->izq;
+	NodoT<T>* _encontrarSiguiente(NodoT<T>* nodo) { 
+		NodoT<T>* actual = nodo;
+		while (actual->izquierda != nullptr) {
+			actual = actual->izquierda;
 		}
 		return actual;
 	}
@@ -357,11 +348,11 @@ private:
 
 		return _binarySearch(i / 2, min(i, n - 1), x);
 	}
-	Nodo<T>* _busquedaBST(Nodo<T>* nodo, function <bool(T)>condition) {  
+	NodoT<T>* _busquedaBST(NodoT<T>* nodo, function <bool(T)>condition) {
 		if (nodo == nullptr) return nullptr;
-		if (condition(nodo->elemento)) return nodo;
-		else if (condition(nodo->elemento)) { return _busquedaBST(nodo->izq, condition); }  
-		else return _busquedaBST(nodo->der, condition); 
+		if (condition(nodo->e)) return nodo;
+		else if (condition(nodo->e)) { return _busquedaBST(nodo->izquierda, condition); }
+		else return _busquedaBST(nodo->dererecha, condition);
 	}
 
 public:
@@ -383,7 +374,7 @@ public:
 
 	void postOrden() { _postOrden(raiz); }
 
-	Nodo<T>* busquedaBST(function<bool(T)>buscador) { return _busquedaBST(raiz, buscador); }  
+	NodoT<T>* busquedaBST(function<bool(T)>buscador) { return _busquedaBST(raiz, buscador); }
 
 	int binarySearch(int low, int high, T x) {
 		return _binarySearch(low, high, x);
@@ -434,9 +425,9 @@ public:
 		cout << "Profundidad del arbol: " << profundidad << endl;
 	}
 
-	Nodo<T>* encontrarSiguiente() { return _encontrarSiguiente(raiz); }
+	NodoT<T>* encontrarSiguiente() { return _encontrarSiguiente(raiz); }
 
-	Nodo<T>* eliminarNodo(T eliminar) { return _eliminarNodo(raiz, eliminar); }
+	NodoT<T>* eliminarNodo(T eliminar) { return _eliminarNodo(raiz, eliminar); }
 	int nextGap(int gap) { return _nextGap(gap); }
 
 	void combSort(int n, function<bool(T, T)> comparador) { _combSort(n, comparador); }
@@ -450,6 +441,4 @@ public:
 	void merge(int left, int mid, int right, function<bool(T, T)> comparador) { _merge(left, mid, right, comparador); }
 
 	void mergeSort(int left, int right, function<bool(T, T)> comparador) { _mergeSort(left, right, comparador); }
-
-	void printVector() { _printVector(vec); }
 };

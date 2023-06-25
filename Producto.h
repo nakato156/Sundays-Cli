@@ -40,7 +40,9 @@ public:
 	bool operator>(const Producto& otroProducto) const {
 		return precio > otroProducto.precio;
 	}
-
+	bool operator>=(const Producto& otroProducto) const {
+		return precio >= otroProducto.precio;
+	}
 	bool operator-(const Producto& otroProducto) const {
 		return precio - otroProducto.getPrecio(); 
 	}

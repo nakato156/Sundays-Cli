@@ -4,6 +4,8 @@
 #include "Hash.h"
 #include "Usuario.h"
 #include "DataFrame.h"
+#include "TreeAVLProduct.h"
+#include "TreeBSTProduct.h"
 #include "Estadisticas.h"
 #include "Test.h"
 
@@ -42,7 +44,10 @@ public:
 	}
 
 	void test() {
-		Test test();
+		TreeAVLProduct AvlTree;
+		TreeBSTProduct bstTree;
+		Test test(AvlTree, bstTree);
+		test.init(); 
 	}
 
 };

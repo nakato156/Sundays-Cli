@@ -1,17 +1,23 @@
 #pragma once
-#include "ArbolAVL.h"  
+#include "ArbolAVL.h"
 #include "Producto.h"
+#include "DataFrame.h" 
+#include "constantes.h" 
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 class TreeAVLProduct {
-	ArbolAVL<Producto>* treeName;
-	ArbolAVL<Producto>* treePrecio;
+	friend class Test;
+	ArbolAVL<Producto> treeName;
+	ArbolAVL<Producto> treePrecio;
+	DataFrame data;
 	void(*imprimir)(Producto);
 	short(*criterioN)(Producto, Producto); //nombre
 	short(*criterioP)(Producto, Producto); //precio
 	short(*criterioC)(Producto, Producto); //categoria
 public:
-	TreeAVLProduct() {
+	TreeAVLProduct() { 
 		imprimir = [](Producto p)->void {cout << p.getNombre() << "\t" << p.getCategoria() << "\t" << p.getPrecio() << endl;  };
 		criterioN = [](Producto a, Producto b) ->short {
 			if (a.getNombre().compare(b.getNombre()) < 0) return -1;
@@ -27,25 +33,25 @@ public:
 			else if (a.getPrecio() > b.getPrecio()) return 1;
 			else return 0;
 		};
-		treeName = new ArbolAVL<Producto>(imprimir, criterioN);
-		treePrecio = new ArbolAVL<Producto>(imprimir, criterioP);
+		treeName = ArbolAVL<Producto>(imprimir, criterioN);
+		treePrecio = ArbolAVL<Producto>(imprimir, criterioP);
 	}
 
-	void simulateTreeN() {//cambiar al funcionamiento del DATAFRAME
-		treeName->Insertar(Producto("23456", "Pollo", "Principal", 29));
-		treeName->Insertar(Producto("24656", "Malteada", "Bebida", 39));
-		treeName->Insertar(Producto("23956", "Granizado", "Bebida", 32));
-		treeName->Insertar(Producto("23236", "Gaseosa", "Bebida", 10));
-		treeName->Insertar(Producto("23596", "Cerdo", "Principal", 20));
-		treeName->Insertar(Producto("20956", "Pato", "Principal", 35));
+	void simulateTreeN() {
+		data.read_csv(filenameComida);
+		double precio = 0;
+		for (int i = 0; i < data.size(); i++) {
+			auto fila = data[i];
+			treeName.Insertar(Producto(fila["Id"], fila["Nombre"], fila["Tipo"], precio));
+		}
 	}
 	void simulateTreeP() {//cambiar al funcionamiento del DATAFRAME
-		treePrecio->Insertar(Producto("23456", "Pollo", "Principal", 29));
-		treePrecio->Insertar(Producto("24656", "Malteada", "Bebida", 39));
-		treePrecio->Insertar(Producto("23956", "Granizado", "Bebida", 32));
-		treePrecio->Insertar(Producto("23236", "Gaseosa", "Bebida", 10));
-		treePrecio->Insertar(Producto("23596", "Cerdo", "Principal", 20));
-		treePrecio->Insertar(Producto("20956", "Pato", "Principal", 35));
+		data.read_csv(filenameComida);  
+		double precio = 0; 
+		for (int i = 0; i < data.size(); i++) { 
+			auto fila = data[i]; 
+			treePrecio.Insertar(Producto(fila["Id"], fila["Nombre"], fila["Tipo"], precio));
+		}
 	}
 
 	void menuArbolAVL(ArbolAVL<Producto>* tree) {
@@ -119,17 +125,19 @@ public:
 	}
 
 	void init() {
-		int eleccion;
-		cout << "Con que arbol desea trabajar? " << endl;
-		cout << "1) Arbol insertado por precio: " << endl;
-		cout << "2) Arbol insertado por nombre: " << endl; cin >> eleccion;
-		if (eleccion == 1) {
-			simulateTreeP(); 
-			menuArbolAVL(treePrecio);
-		}
-		else { 
-			simulateTreeN(); 
-			menuArbolAVL(treeName); 
-		}
+		//int eleccion;
+		//cout << "Con que arbol desea trabajar? " << endl;
+		//cout << "1) Arbol insertado por precio: " << endl;
+		//cout << "2) Arbol insertado por nombre: " << endl; cin >> eleccion;
+		//if (eleccion == 1) {
+		//	simulateTreeP(); 
+		//	menuArbolAVL(treePrecio);
+		//}
+		//else { 
+		//	simulateTreeN(); 
+		//	menuArbolAVL(treeName); 
+		//}
+		simulateTreeP(); 
+		simulateTreeN(); 
 	}
 };
