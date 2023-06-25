@@ -27,6 +27,16 @@ MapadeCate clasificarPlatos() {
 
 
 }
+Categoria buscarCategoriaPorCodigo(const MapadeCate& categoriasPlatos, const string& codigo) {
+	for (const auto& categoria : categoriasPlatos) {
+		const Lista<Producto>& listaPlatos = categoria.second;
+		for (const Producto& plato : listaPlatos) {
+			if (plato.getCodigo() == codigo) {
+				return categoria.first;  // Se encontró el plato, se devuelve la categoría
+			}
+		}
+	}
+}
 
 string inputPassword() {
 	char caracter;
