@@ -48,8 +48,8 @@ int Menu::selectOpcion() {
 	}
 }
 
-Lista<Producto> Menu::MenuUserV2(DataFrame data) {
-	Lista<Producto> lista;
+Lista<Item> Menu::MenuUserV2(DataFrame data) {
+	Lista<Item> lista;
 	Lista<Producto> menu = generarMenu(data);
 
 	int eleccion;
@@ -57,13 +57,13 @@ Lista<Producto> Menu::MenuUserV2(DataFrame data) {
 	do {
 		eleccion = selectOpcion();
 		if (eleccion >= 1 && eleccion <= menu.getSize()) {
-			lista.push_back(menu.at(eleccion - 1));
+			lista.push_back(Item{ menu.at(eleccion - 1)});
 		}
 	} while (eleccion != menu.getSize() + 1);
 	return  lista;
 }
-void Menu::initMenu() {
+void Menu::initMenu(CarritoDeCompras& carrito) {
 	data = cargarDatos();
 	list_prod = MenuUserV2(data); cout << endl;
-	list_prod.print();
+	carrito = CarritoDeCompras(list_prod);
 }

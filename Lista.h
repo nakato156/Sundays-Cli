@@ -94,6 +94,18 @@ public:
         //sino encuentra retorna nulo
         return end();
     }
+
+    Iterador<T> find(T valorBuscado, bool(*func)(T&, T&)) {
+        Nodo<T>* current = start;
+
+        while (current != nullptr) {
+            if(func(current->element, valorBuscado))
+                return Iterador<T>(current);
+            current = current->next;//sino sigue con el siguiente
+        }
+        return end();
+    }
+
     void push_frontV1(T e) {//Sin depurar
         if (start == nullptr) {
             Nodo<T>* _new = new Nodo<T>(e);

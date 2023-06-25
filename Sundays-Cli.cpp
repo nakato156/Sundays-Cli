@@ -1,6 +1,5 @@
 #include <iostream>
 #include "App.h"
-#include "Menu.h"
 
 using namespace std;
 
@@ -18,11 +17,5 @@ int main() {
         cout << "Ha ocurrido un error" << endl;
         exit(EXIT_FAILURE);
     }
-
-    if (usuario.isAdmin()) {
-        Menu menu;
-        menu.initMenu();
-    }
-
     return 0;
 }

@@ -142,6 +142,7 @@
     <ClCompile Include="Sundays-Cli.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Usuario.cpp" />
+    <ClCompile Include="Vistas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArbolAVL.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Crypt.h" />
     <ClInclude Include="DataFrame.h" />
+    <ClInclude Include="Descuento.h" />
     <ClInclude Include="Estadisticas.h" />
     <ClInclude Include="Hash.h" />
     <ClInclude Include="HashProduct.h" />
@@ -169,6 +171,7 @@
     <ClInclude Include="TreeAVLProduct.h" />
     <ClInclude Include="TreeBSTProduct.h" />
     <ClInclude Include="Usuario.h" />
+    <ClInclude Include="Vistas.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="comida.csv" />
