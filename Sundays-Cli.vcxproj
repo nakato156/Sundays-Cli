@@ -139,6 +139,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Producto.cpp" />
     <ClCompile Include="Registro.cpp" />
+    <ClCompile Include="Mensaje.cpp" />
     <ClCompile Include="Sundays-Cli.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Usuario.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Lista.h" />
     <ClInclude Include="constantes.h" />
     <ClInclude Include="Login.h" />
+    <ClInclude Include="Mensaje.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Producto.h" />
     <ClInclude Include="Registro.h" />

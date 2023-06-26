@@ -51,11 +51,12 @@ void App::init() {
     
     system("cls");
 
-    cout << "Pagar\t\t    Historial\t\tSalir" << endl;
+    cout << "Pagar\t\t    Historial\t\t Reclamo\t\tSalir" << endl;
 
-    pair<int, int> pos = selectOpcion(0, 3, 0, 0, 20);
+    pair<int, int> pos = selectOpcion(0, 4, 0, 0, 20);
     int opcion = pos.first;
-    if (opcion == 2) exit(EXIT_SUCCESS);
+    if (opcion == 3) exit(EXIT_SUCCESS);
+    else if (opcion == 2) Vistas::ingresarReclamo(hConsole);
     else if (opcion == 1) Vistas::historial(hConsole, usuario, productos);
     else if(opcion == 0) Vistas::pagar(hConsole, carrito, usuario);
 }
