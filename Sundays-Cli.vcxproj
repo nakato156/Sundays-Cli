@@ -156,6 +156,7 @@
     <ClInclude Include="DataFrame.h" />
     <ClInclude Include="Descuento.h" />
     <ClInclude Include="Estadisticas.h" />
+    <ClInclude Include="Fecha.h" />
     <ClInclude Include="Hash.h" />
     <ClInclude Include="HashProduct.h" />
     <ClInclude Include="helpers.h" />

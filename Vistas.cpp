@@ -62,7 +62,13 @@ void Vistas::admin(HANDLE hConsole, Admin admin) {
 void Vistas::historial(HANDLE hConsole, Usuario& usuario, ArbolAVL<Producto>& productos) {
 	HistorialCompras historial;
 	historial.load(productos, usuario);
-
+	system("cls");
 	printColoredLine(hConsole, { {"Historial de compras\n", 10} });
 
+	Lista<Compra> listaHistorial = historial.getLista();
+	cout << "sie: " <<  listaHistorial.getSize() << endl;
+	for (int i = 0; i < listaHistorial.getSize(); i++) {
+		printColoredLine(hConsole, { {"Compra " + to_string(i + 1) + "\n", 6} });
+		cout << listaHistorial.at(i) << endl;
+	}
 }

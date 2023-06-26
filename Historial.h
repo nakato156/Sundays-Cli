@@ -19,9 +19,9 @@ public:
 		int size = file.size();
 		for (int i = 0; i < size; i++) {
 			auto fila = file[i];
-			if (fila["uuid"] != cliente.getUUID()) continue;
+			if (fila["client_uuid"] != cliente.getUUID()) continue;
 			std::string data[] = { fila["uuid"],
-				fila["cliente_uuid"],
+				fila["client_uuid"],
 				fila["productos"],
 				fila["monto"],
 				fila["fecha"]
@@ -30,5 +30,6 @@ public:
 		}
 		return historial;
 	}
+	Lista<Compra> getLista() { return historial; }
 };
 #endif

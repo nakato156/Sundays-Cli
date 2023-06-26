@@ -21,10 +21,10 @@ void Compra::Guardar() {
 
 	// REFERENCIA https://es.stackoverflow.com/questions/32046/mostrar-fecha-y-hora-actual-en-c
 	ostringstream oss;
-	oss << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");	//para formatear la fecha cada vez que se haga una nueva compra
-	string fecha = oss.str();
+	oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");	//para formatear la fecha cada vez que se haga una nueva compra
+	fecha = Fecha(oss.str());
 
-	auto row = { UUID, cliente.getUUID(), carrito.exportar(), to_string(carrito.total()), fecha }; //agregar a la fila todos los datos
+	auto row = { UUID, cliente.getUUID(), carrito.exportar(), to_string(carrito.total()), string(fecha) }; //agregar a la fila todos los datos
 
 	file.addRow(row);	//se agrega la fila creada anteriormente
 	file.save();		//se agrega todos los datos al archivo
