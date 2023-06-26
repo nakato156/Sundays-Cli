@@ -68,17 +68,17 @@ public:
     Iterador<T> end() const {
         return Iterador<T>(nullptr);
     }
-    T& at(size_t posicion) const {
-        if (posicion < 0 || posicion > size) {
-            throw std::out_of_range("Índice fuera de rango");
+    T& at(size_t posicion) const {                                                                          
+        if (posicion < 0 || posicion > size) {                                              //3 + MAX INTERNO-> 3 + 1 = 4
+            throw std::out_of_range("Índice fuera de rango");                    //1
         }
-        Nodo<T>* current = start;
-        size_t currentPosicion = 0;
+        Nodo<T>* current = start;                                                             //1
+        size_t currentPosicion = 0;                                                            //1
 
-        while (currentPosicion < posicion) {
-            current = current->next;
-            currentPosicion++;
-        }
+        while (currentPosicion < posicion) {                                            //1+ MAX INTERNA->1+2=3
+            current = current->next;                                                           //2
+            currentPosicion++;                                                                   //1
+        }                                                                                                   //TOTAL = 3+1+1+4= 9
 
         return current->element;
     }
@@ -95,14 +95,14 @@ public:
         return end();
     }
 
-    Iterador<T> find(T valorBuscado, bool(*func)(T&, T&)) {
-        Nodo<T>* current = start;
-
-        while (current != nullptr) {
-            if(func(current->element, valorBuscado))
-                return Iterador<T>(current);
-            current = current->next;//sino sigue con el siguiente
-        }
+    Iterador<T> find(T valorBuscado, bool(*func)(T&, T&)) {                            //COMPLEJIDAD ALGORITMICA
+        Nodo<T>* current = start;                                                                           //1
+        
+        while (current != nullptr) {                                                                        // 1 + MAX interno - > 1 + 4 = 5
+            if(func(current->element, valorBuscado))                                            //2 + Max -> 2 + 2 = 4 
+                return Iterador<T>(current);                                                            //1
+            current = current->next;//sino sigue con el siguiente                           //2
+        }                                                                                                           //TOTAL 1 + 5 = 6
         return end();
     }
 

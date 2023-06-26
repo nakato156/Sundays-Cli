@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include "Carrito.h"
 #include "helpers.h"
+#include "Mensaje.h"
 #include "Admin.h"
 #include "Descuento.h"
 #include "Compra.h"
@@ -13,6 +14,9 @@ namespace Vistas {
 	void pagar(HANDLE, CarritoDeCompras&, Usuario&);
 	void admin(HANDLE, Admin);
 	void historial(HANDLE, Usuario&, ArbolAVL<Producto>&);
+	void ingresarReclamo(HANDLE Hconsole);
+
+
 }
 
 #endif

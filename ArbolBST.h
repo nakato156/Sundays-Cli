@@ -44,12 +44,12 @@ private:
 		cout << nodo->e << " ";
 		_enOrden(nodo->dererecha);
 	}
-	void _BSTtreeToVector(NodoT<T>* nodo) {
-		if (nodo != nullptr) {
-			vec.push_back(nodo->e);
-			_BSTtreeToVector(nodo->izquierda);
-			_BSTtreeToVector(nodo->dererecha);
-		}
+	void _BSTtreeToVector(NodoT<T>* nodo) {					
+		if (nodo != nullptr) {												//1 + MAX INTERNO->1 + 2 = 3
+			vec.push_back(nodo->e);									//2
+			_BSTtreeToVector(nodo->izquierda);				//2
+			_BSTtreeToVector(nodo->dererecha);				//2
+		}																				//TOTAL: 3
 	}
 
 	vector<T> _getVector() {
@@ -57,7 +57,7 @@ private:
 	}
 
 	int _binSearch(NodoT<T>* nodo, T e) {
-		if (nodo == nullptr) {//sino se encuentra se devuelve -1
+		if (nodo == nullptr) {						
 			return -1;
 		}
 
@@ -136,11 +136,11 @@ private:
 	}
 
 	NodoT<T>* _busquedaBST(NodoT<T>* nodo, function <bool(T)>condition) {
-		if (nodo == nullptr) return nullptr;
-		if (condition(nodo->e)) return nodo;
-		else if (condition(nodo->e)) { return _busquedaBST(nodo->izquierda, condition); }
-		else return _busquedaBST(nodo->dererecha, condition);
-	}
+		if (nodo == nullptr) return nullptr;																						//2
+		if (condition(nodo->e)) return nodo;																					//2
+		else if (condition(nodo->e)) { return _busquedaBST(nodo->izquierda, condition); }		//3
+		else return _busquedaBST(nodo->dererecha, condition);													//2
+	}																										//TOTAL: 2 + 2 + 3 + 3 = 9
 
 public:
 	ArbolB() { raiz = nullptr; }
