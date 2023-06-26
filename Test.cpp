@@ -13,7 +13,6 @@ void Test::exportar(string sufijo, chrono::duration<double>tiempo1, chrono::dura
 }
 //INSERCION ENTRE LOS DOS TIPOS DE ARBOLES
 void Test::compararInsercion() {
-	cout << "Insertando: " << endl; 
 	chrono::time_point<std::chrono::system_clock> start1, end1, start2, end2, start3, end3;
 	//insercion en AVL por nombre
 	start1 = chrono::system_clock::now();
@@ -21,7 +20,7 @@ void Test::compararInsercion() {
 	end1 = chrono::system_clock::now();
 	//insercion en AVL por precio
 	start2 = chrono::system_clock::now();
-	coleccionAVL.simulateTreeP(); 
+	coleccionAVL.simulateTreeP();  
 	end2 = chrono::system_clock::now();
 	//insercion en BST
 	start3 = chrono::system_clock::now();
@@ -36,7 +35,6 @@ void Test::compararInsercion() {
 }
 
 void Test::compararBusqueda(Producto producto) {
-	cout << "comparando" << endl; 
 	chrono::time_point<std::chrono::system_clock> start1, end1, start2, end2, start3, end3;
 	//busqueda en AVL de nombre
 	start1 = chrono::system_clock::now();
@@ -59,12 +57,12 @@ void Test::compararBusqueda(Producto producto) {
 }
 
 void Test::init() {
-	coleccionBST.simulateBSTtree();  
-	coleccionBST.treeBST->BSTtreeToVector();  
-	vectorBST = coleccionBST.treeBST->getVector();   
-	cantDatos = vectorBST.size(); 
-	int i = rand()% vectorBST.size();  
-	auto producto = vectorBST.at(i);  
+	coleccionAVL.simulateTreeN();  
+	coleccionAVL.treeName.ALVtoVector(); 
+	vectorAVL = coleccionAVL.treeName.getVctor(); 
+	cantDatos = vectorAVL.size(); 
+	int i = rand() % cantDatos;
+	auto producto = vectorAVL.at(i);   
 	compararInsercion(); 
 	compararBusqueda(producto);  
 }

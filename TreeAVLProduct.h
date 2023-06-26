@@ -39,18 +39,17 @@ public:
 
 	void simulateTreeN() {
 		data.read_csv(filenameComida);
-		double precio = 0;
 		for (int i = 0; i < data.size(); i++) {
 			auto fila = data[i];
-			treeName.Insertar(Producto(fila["Id"], fila["Nombre"], fila["Tipo"], precio));
+			treeName.Insertar(Producto(fila["Id"], fila["Nombre"], fila["Tipo"], stof(fila["precio"])));
 		}
 	}
 	void simulateTreeP() {//cambiar al funcionamiento del DATAFRAME
-		data.read_csv(filenameComida);  
-		double precio = 0; 
-		for (int i = 0; i < data.size(); i++) { 
-			auto fila = data[i]; 
-			treePrecio.Insertar(Producto(fila["Id"], fila["Nombre"], fila["Tipo"], precio));
+		DataFrame data2;
+		data2.read_csv(filenameComida);  
+		for (int i = 0; i < data2.size(); i++) { 
+			auto fila = data2[i]; 
+			treePrecio.Insertar(Producto(fila["Id"], fila["Nombre"], fila["Tipo"], stof(fila["precio"])));
 		}
 	}
 
@@ -125,18 +124,6 @@ public:
 	}
 
 	void init() {
-		//int eleccion;
-		//cout << "Con que arbol desea trabajar? " << endl;
-		//cout << "1) Arbol insertado por precio: " << endl;
-		//cout << "2) Arbol insertado por nombre: " << endl; cin >> eleccion;
-		//if (eleccion == 1) {
-		//	simulateTreeP(); 
-		//	menuArbolAVL(treePrecio);
-		//}
-		//else { 
-		//	simulateTreeN(); 
-		//	menuArbolAVL(treeName); 
-		//}
 		simulateTreeP(); 
 		simulateTreeN(); 
 	}

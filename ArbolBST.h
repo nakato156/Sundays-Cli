@@ -9,9 +9,9 @@ template <class T>
 class NodoT { 
 public:
 	T e;
-	NodoT* izquierda;
-	NodoT* dererecha;
-	NodoT() = default;  
+	NodoT* izquierda; 
+	NodoT* dererecha; 
+	NodoT() = default;   
 	NodoT(T e) { 
 		izquierda = nullptr;
 		dererecha = nullptr;
@@ -26,29 +26,16 @@ private:
 	vector<T> vec;
 
 	bool _insertar(NodoT<T>*& nodo, T e) {
-		NodoT<T>* newNode = new NodoT<T>(); 
-		newNode->e = e;
-
 		if (nodo == nullptr) {
-			nodo = newNode;
-			return true;
+			nodo = new NodoT<T>();
+			nodo->e = e;
 		}
-
-		NodoT<T>* parent = nullptr; 
-		while (nodo != nullptr) {
-			parent = nodo;
-			if (e < nodo->e)
-				nodo = nodo->izquierda;
-			else if (e > nodo->e)
-				nodo = nodo->dererecha; 
-			else
-				return false; // El elemento ya existe en el árbol
+		else if (e < nodo->e) {
+			return _insertar(nodo->izquierda, e);
 		}
-		if (e < parent->e)
-			parent->izquierda = newNode;
-		else
-			parent->dererecha = newNode; 
-		return true;
+		else if (e >= nodo->e) {
+			return _insertar(nodo->dererecha, e);
+		}
 	}
 
 	void _enOrden(NodoT<T>* nodo) {
@@ -57,29 +44,9 @@ private:
 		cout << nodo->e << " ";
 		_enOrden(nodo->dererecha);
 	}
-
-	void _preOrden(NodoT<T>* nodo) {
-		if (nodo != nullptr) {											//primero confirmamos que el arbol no este vacio (raiz)
-			cout << nodo->e << " ";						//imprimimos el elemento
-			_preOrden(nodo->izquierda);						//recursividad pero ahora comparando el hijo izquierdo. 
-			_preOrden(nodo->dererecha);						//recursividad con el hijo derecho
-			//Se sigue el algoritmo original, RAIZ-IZQUIERDA-DERECHA
-		}
-	}
-
-	void _postOrden(NodoT<T>* nodo) {
-		if (nodo != nullptr) {										//primero confirmamos que el arbol no este vacio (raiz)
-			_postOrden(nodo->izquierda);				//recursividad pero ahora comparando el hijo izquierdo. 
-			_postOrden(nodo->dererecha);				//recursividad con el hijo derecho
-			cout << nodo->e << " ";					//imprimimos el elemento
-			//Se sigue el algoritmo original, IZQUIERDA-DERECHA-RAIZ
-		}
-	}
-
 	void _BSTtreeToVector(NodoT<T>* nodo) {
 		if (nodo != nullptr) {
 			vec.push_back(nodo->e);
-			cout << nodo->e<< endl; 
 			_BSTtreeToVector(nodo->izquierda);
 			_BSTtreeToVector(nodo->dererecha);
 		}
@@ -87,41 +54,6 @@ private:
 
 	vector<T> _getVector() {
 		return vec;
-	}
-	bool _vacio() {
-		return raiz == nullptr;
-	}
-
-	int _cantidad() {
-		//La cantidad de nodos del árbol es:
-		//	0 si es vacío
-		//	1 + la cantidad de nodos por la izquierda + la cantidad de nodos por la derecha
-		NodoT<T>* nodo = raiz;
-		if (nodo == nullptr)
-			return 0;
-		else
-		{
-			int ci, cd;
-			ci = _cantidad(nodo->izquierda);
-			cd = _cantidad(nodo->dererecha);
-			return 1 + ci + cd;
-		}
-	}
-
-	int _altura(NodoT<T>* nodo) {
-		//La altura del árbol es:
-		//	0 si es vacío
-		//	la mayor de las alturas por la izquierda y por la derecha, las cuáles son 0 si son vacías ó 1 + la altura por la izq(o der) en caso contrario
-		 
-		if (nodo == nullptr)
-			return 0;
-		else
-		{
-			int ai, ad;
-			ai = 1 + _altura(nodo->izquierda);
-			ad = 1 + _altura(nodo->dererecha);
-			return ai > ad ? ai : ad;
-		}
 	}
 
 	int _binSearch(NodoT<T>* nodo, T e) {
@@ -217,15 +149,10 @@ public:
 
 	void enOrden() { _enOrden(raiz); }
 
-	void preOrden() { _preOrden(raiz); }
-
+	
 	void BSTtreeToVector() { _BSTtreeToVector(raiz); }
 
 	vector<T> getVector() { return _getVector(); }
-
-	int cantidad() { return _cantidad(raiz); }
-
-	int altura() { return _altura(raiz); }
 
 	NodoT<T>* busquedaBST(function<bool(T)>buscador) { return _busquedaBST(raiz, buscador); }
 

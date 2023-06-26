@@ -31,7 +31,7 @@ private:
 	Node<T>* raiz;
 	short (*criterio)(T, T);//puntero a función- en vez de utilizar un functor 
 	void(*impresionArbol)(T); //puntero a función 
-	vector<T> AVLvec;  
+	vector<T> AVLvec;   
 	int _altura(Node<T>* nodo) {
 		if (nodo == nullptr) return -1;
 		return nodo->altura;
@@ -170,8 +170,8 @@ private:
 
 	void _AVLtreeToVector(Node<T>* node) {
 		if (node != nullptr) {
-			AVLvec.push_back(node->elemento);  
 			_AVLtreeToVector(node->izq);
+			AVLvec.push_back(node->elemento); 
 			_AVLtreeToVector(node->der);
 		}
 	}
@@ -206,7 +206,8 @@ public:
 		this->raiz = nullptr;
 	}
 	int altura() { return _altura(raiz); }
-
+	void ALVtoVector() { _AVLtreeToVector(raiz); }
+	vector<T> getVctor() { return AVLvec; } 
 	bool Insertar(T e) { return _insertar(raiz, e); }
 
 	void inOrden() { _inOrden(raiz); }
