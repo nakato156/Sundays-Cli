@@ -10,19 +10,18 @@ class TreeBSTProduct {
 	DataFrame data;  
 	ArbolB<Producto>* treeBST;  
 public: 
-	TreeBSTProduct(){}
+	TreeBSTProduct() = default; 
 	~TreeBSTProduct(){}
 
 	void simulateBSTtree() {
-		treeBST = new ArbolB<Producto>; 
-		data.read_csv(filenameComida);
-		double precio = 0;
+		treeBST = new ArbolB<Producto>;  
+		data.read_csv(filenameComida); 
 		for (int i = 0; i < data.size(); i++) {
 			auto fila = data[i];
-			Producto producto = Producto(fila["Id"], fila["Nombre"], fila["Tipo"], precio);
+			Producto producto = Producto(fila["Id"], fila["Nombre"], fila["Tipo"], stof(fila["precio"])); 
 			treeBST->insertar(producto);
-			//cout << i << "" << producto.getNombre() << " " << producto.getCategoria() << "" << producto.getPrecio() << endl;   
 		}
+		cout << "en orden: " << endl; 
 	}
 	/*void menuTreeBST() {
 		int eleccion;

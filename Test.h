@@ -1,6 +1,7 @@
 #pragma once
 #ifndef TEST_H
 #define TEST_H
+
 #include "TreeBSTProduct.h"
 #include "TreeAVLProduct.h" 
 #include <iostream>
@@ -13,6 +14,8 @@ private:
 	TreeBSTProduct coleccionBST; 												//COLECCIONADORA BST
 	string tipoComparacion; 
 	vector<Producto> vectorBST;								//VECTOR PARA BST
+	vector<Producto> vectorAVL;								//VECTOR PARA AVL
+
 	int cantDatos;
 public:
 	Test() = default;  

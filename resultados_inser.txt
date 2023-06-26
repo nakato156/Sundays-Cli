@@ -1,5 +1,5 @@
-Tiempo1: 6.77495
-Tiempo2: 5.60055
-Tiempo3: 2.21884
+Tiempo1: 13.5604
+Tiempo2: 4.09345
+Tiempo3: 2.27083
 Insercion: Insercion NombreAVL vs PrecioAVL vs BST
-Cant. de datos: 1
+Cant. de datos: 22341
