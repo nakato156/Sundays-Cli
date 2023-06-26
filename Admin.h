@@ -46,8 +46,8 @@ public:
 	void test() {
 		TreeAVLProduct AvlTree;
 		TreeBSTProduct bstTree;
-		Test test(AvlTree, bstTree);
-		test.init(); 
+		Test testeo;   
+		testeo.init();    
 	}
 
 };

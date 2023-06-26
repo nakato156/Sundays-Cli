@@ -1,5 +1,5 @@
-Tiempo1: 3.44e-05
-Tiempo2: 9.4e-06
-Tiempo3: 0.0003351
+Tiempo1: 1e-05
+Tiempo2: 4e-06
+Tiempo3: 0.000277
 Insercion: Binsearch en NombreAVL vs PrecioAVL vs BST
 Cant. de datos: 1
