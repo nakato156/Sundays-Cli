@@ -7,6 +7,7 @@
 #include "Crypt.h"
 #include "DataFrame.h"
 #include <functional>
+#include "ArbolAVL.h"
 
 class Compra {
 protected:
@@ -15,10 +16,10 @@ protected:
 	std::string UUID, fecha;
 	Usuario cliente;
 	CarritoDeCompras carrito;
-	static Compra load(Lista<Producto>&, const std::string[]);
+	static Compra load(ArbolAVL<Producto>&, const std::string[]);
 public:
 	Compra();
-	Compra(Usuario client, const CarritoDeCompras&);
+	Compra(Usuario& client, const CarritoDeCompras&);
 	void Guardar();
 };
 #endif

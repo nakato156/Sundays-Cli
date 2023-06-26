@@ -1,16 +1,12 @@
 #pragma once
 #ifndef TEST_H
 #define TEST_H
-//#include "HashProduct.h"
-#include "ArbolAVL.h"
-#include"ArbolBST.h"
-#include "DataFrame.h"
-#include "Producto.h"
 #include "TreeBSTProduct.h"
 #include "TreeAVLProduct.h" 
 #include <iostream>
 #include <chrono>
-#include<time.h> 
+#include <time.h> 
+
 class Test {
 private:
 	DataFrame df;

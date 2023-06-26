@@ -2,7 +2,7 @@
 #ifndef HIST_H
 #define HIST_H
 
-#include "Lista.h"
+#include "ArbolAVL.h"
 #include "Compra.h"
 #include "Usuario.h"
 #include "DataFrame.h"
@@ -12,7 +12,7 @@ class HistorialCompras : public Compra {
 public:
 	HistorialCompras() = default;
 	HistorialCompras(Usuario client, const CarritoDeCompras& carrito) :Compra(client, carrito) {}
-	Lista<Compra> load(Lista<Producto>& productos, Usuario cliente) { //cargar al historial de compras
+	Lista<Compra> load(ArbolAVL<Producto>& productos, Usuario cliente) { //cargar al historial de compras
 		DataFrame file;
 		file.read_csv(filename);
 		//historial csv
@@ -28,6 +28,7 @@ public:
 			};
 			historial.push_back(Compra::load(productos, data));
 		}
+		return historial;
 	}
 };
 #endif

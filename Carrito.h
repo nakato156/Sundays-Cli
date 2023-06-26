@@ -2,6 +2,7 @@
 #include "Producto.h"
 #include "Lista.h" // cambiar por lista
 #include <iostream>
+#include "ArbolAVL.h"
 
 struct Item {
 	Producto producto;
@@ -19,7 +20,7 @@ public:
 	CarritoDeCompras(Lista<Item> productos) {
 		this->productos = productos;
 	}
-	static CarritoDeCompras load(Lista<Producto>& productos, std::string data);
+	static CarritoDeCompras load(ArbolAVL<Producto>& productos, std::string data);
 	void agregar(const Producto&);
 	void agregar(const Item&);
 	void eliminarProd(const Producto&);

@@ -55,18 +55,28 @@ void DataFrame::read_csv(const string filename, const char sep){
 void DataFrame::addRow(vector<string> data) {
 	if (data.size() != columnas.size()) 
 		throw DataFrameError("La columna agregada no tiene el tamano adecuado"); //error 
+	
 	Fila nueva_fila = Fila(columnas); 
-	for (auto campo : data) 
+	for (auto campo : data)
 		nueva_fila.push(campo); 
+	filas.push_back(nueva_fila);
+	length++;
 }
 
 void DataFrame::save() {
 	ofstream archivo(filename); 
 	if (!archivo.is_open()) throw DataFrameError("No se pudo guardar el archivo");
+	//para el header
+	for (int c = 0; c < columnas.size(); c++)
+		archivo << columnas[c] << (c + 1 == columnas.size() ? '\n' : separador);
+
 	for (int i = 0; i < length; i++) { 
 		Fila fila = filas[i]; 
-		for (int c = 0; c < fila.size(); c++) 
-			archivo << fila[c] << (c + 1 == fila.size() ? '\n' : separador); 
+		//para el contenido
+		for (int c = 0; c < fila.size(); c++) {
+			cout << fila[c] << endl;
+			archivo << fila[c] << (c + 1 == fila.size() ? '\n' : separador);
+		}
 	}
 }
 

@@ -8,7 +8,7 @@ using namespace std;
 
 Compra::Compra() = default;
 
-Compra::Compra(Usuario client, const CarritoDeCompras& carrito_) : cliente(client), carrito(carrito_) {};
+Compra::Compra(Usuario& client, const CarritoDeCompras& carrito_) : cliente(client), carrito(carrito_) {};
 
 void Compra::Guardar() {
 	DataFrame file;
@@ -30,7 +30,7 @@ void Compra::Guardar() {
 	file.save();		//se agrega todos los datos al archivo
 }
 
-Compra Compra::load(Lista<Producto>& productos, string const data[]) {
+Compra Compra::load(ArbolAVL<Producto>& productos, string const data[]) {
 	string uuid_cliente = data[1];
 	Usuario cliente = Usuario();
 	return Compra(cliente, CarritoDeCompras::load(productos, data[2]));

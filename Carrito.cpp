@@ -4,7 +4,7 @@ using namespace std;
 
 CarritoDeCompras::CarritoDeCompras() = default;
 
-CarritoDeCompras CarritoDeCompras::load(Lista<Producto>& productos, string data) { // para leer el historial y generar el carrito de compras
+CarritoDeCompras CarritoDeCompras::load(ArbolAVL<Producto>& productos, string data) { // para leer el historial y generar el carrito de compras
 	istringstream iss(data);
 	string linea;
 	CarritoDeCompras carrito;
@@ -16,7 +16,9 @@ CarritoDeCompras CarritoDeCompras::load(Lista<Producto>& productos, string data)
 		getline(ss, cant_str);				//guardar la cantidad el texto restante
 
 		int cant = stoi(cant_str);			//convertir el string cantidad a int
-		Producto producto = productos.buscador([codigo](Producto prod) -> bool { return prod.getCodigo() == codigo; });
+
+		auto res = productos.busqueda([&codigo](Producto prod){ return prod.getCodigo() == codigo; });
+		Producto producto = res->elemento;
 		//buscar el producto por su codigo y que nos retorne todo el producto
 		carrito.agregar(Item{ producto, cant }); //agregar dicho producto al carrito
 	}

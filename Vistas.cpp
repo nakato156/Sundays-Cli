@@ -7,7 +7,7 @@ void Vistas::pagar(HANDLE hConsole, CarritoDeCompras& carrito, Usuario& usuario)
 
 	for (int i = 0; i < productos.getSize(); i++) {
 		int cant = productos.at(i).cant;
-		std::cout << cant; gotoxy(10, i + 1);
+		std::cout << "\r" << cant; gotoxy(10, i + 1);
 		std::cout << productos.at(i).producto.getNombre(); gotoxy(50, i + 1);
 		std::cout << productos.at(i).producto.getPrecio() * cant << "\n\r";
 	}
@@ -59,6 +59,10 @@ void Vistas::admin(HANDLE hConsole, Admin admin) {
 	else if (opcion == 4) admin.test();
 }
 
-void Vistas::historial(HANDLE hConsole, Usuario& usuario) {
+void Vistas::historial(HANDLE hConsole, Usuario& usuario, ArbolAVL<Producto>& productos) {
+	HistorialCompras historial;
+	historial.load(productos, usuario);
+
+	printColoredLine(hConsole, { {"Historial de compras\n", 10} });
 
 }

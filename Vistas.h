@@ -12,7 +12,7 @@
 namespace Vistas {
 	void pagar(HANDLE, CarritoDeCompras&, Usuario&);
 	void admin(HANDLE, Admin);
-	void historial(HANDLE, Usuario&);
+	void historial(HANDLE, Usuario&, ArbolAVL<Producto>&);
 }
 
 #endif

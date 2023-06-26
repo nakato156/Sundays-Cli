@@ -5,7 +5,17 @@ void App::mostrarOpciones(HANDLE hConsole, int select) {
     printSelectLine(hConsole, { "> Iniciar Sesion", "> Registro" }, select, 10);
 }
 
+void App::cargarDatos() {
+    DataFrame file;
+    file.read_csv(filenameComida);
+    for (int i = 0; i < 200; i++) {
+        Fila fila = file[i];
+        productos.Insertar( Producto(fila["Id"], fila["Nombre"], fila["Tipo"], stof(fila["precio"]) ));
+    }
+}
+
 void App::init() {
+    cargarDatos();
     mostrarOpciones(hConsole);
     int y = 0, pos_y_login = 0, pos_y_reg = 1;
     gotoxy(2, y);
@@ -46,6 +56,6 @@ void App::init() {
     pair<int, int> pos = selectOpcion(0, 3, 0, 0, 20);
     int opcion = pos.first;
     if (opcion == 2) exit(EXIT_SUCCESS);
-    else if (opcion == 1);
+    else if (opcion == 1) Vistas::historial(hConsole, usuario, productos);
     else if(opcion == 0) Vistas::pagar(hConsole, carrito, usuario);
 }
