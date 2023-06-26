@@ -134,47 +134,42 @@ private:
 	}
 
 	void resize() {
-		int nuevo_size = genradorPrimos.next();
-		HashEntidad<K, V>** nueva_tabla = new HashEntidad<K, V>* [nuevo_size];
-
-		for (int i = 0; i < nuevo_size; ++i)
-			nueva_tabla[i] = nullptr;
-
-		for (int i = 0; i < TABLE_SIZE; ++i) {
-			if (tabla[i] != nullptr) {
-				K key = tabla[i]->getKey();
-				V value = tabla[i]->getValue();
-				size_t  hash = hashear(key, nuevo_size);
-				size_t base = hash;
-				int step = 0;
+		int nuevo_size = genradorPrimos.next();																	//2
+		HashEntidad<K, V>** nueva_tabla = new HashEntidad<K, V>* [nuevo_size];	   //2
+		for (int i = 0; i < nuevo_size; ++i)																//1+n(1+interna+2)->1 +n(1+2+2) ->1+5n
+			nueva_tabla[i] = nullptr;												//2
+		for (int i = 0; i < TABLE_SIZE; ++i) {							//1 + n(1 + interna + 2) - >1+n(1+10+2)->1+13n
+			if (tabla[i] != nullptr) {												//3 + max interna->3 + 7 = 10
+				K key = tabla[i]->getKey();									//3
+				V value = tabla[i]->getValue();							   //3
+				size_t  hash = hashear(key, nuevo_size);			 //2
+				size_t base = hash;												//1
+				int step = 0;															//1
 				// Manejar colisiones utilizando prueba lineal
-				while (nueva_tabla[hash] != nullptr) {
-					hash = (base + (++step)) % nuevo_size;
+				while (nueva_tabla[hash] != nullptr) {				//3+maxinterna->3 +4=7
+					hash = (base + (++step)) % nuevo_size;			//4
 				}
-
-				nueva_tabla[hash] = new HashEntidad<K, V>(key, value);
-				tabla[i] = nullptr;
+				nueva_tabla[hash] = new HashEntidad<K, V>(key, value);//3
+				tabla[i] = nullptr;																//2
 			}
 		}
-
-		TABLE_SIZE = nuevo_size;
-		tabla = nueva_tabla;
-	}
+		TABLE_SIZE = nuevo_size;									//1
+		tabla = nueva_tabla;												//1
+	}																			//TOTAL: 1 +5n + 1 + 13n + 2 = 18n + 4
 
 
 	void reorganizar(int index) {
-		// Reorganiza la tabla si es necesario, para evitar los huecos en la tabla
-		int nextIndex = (index + 1) % TABLE_SIZE;			//calcula el siguiente indice
-		while (tabla[nextIndex] != nullptr) {				//se sigue ejecutando cuando next index no sea null ptr
-			HashEntidad<K, V>* temp = tabla[nextIndex];		//se crea un puntero temp que apunta al siguiente elemento
-			tabla[nextIndex] = nullptr;
-			numElementos--;
-			if (numElementos < TABLE_SIZE) {
-				insertar(temp->getKey(), temp->getValue());	//se inserta el elemento temp en la tabla
+		int nextIndex = (index + 1) % TABLE_SIZE;					//3	
+		while (tabla[nextIndex] != nullptr) {									//3+MAX INTERNA->3 + 4 = 7
+			HashEntidad<K, V>* temp = tabla[nextIndex];			   //2
+			tabla[nextIndex] = nullptr;												//2
+			numElementos--;																//2
+			if (numElementos < TABLE_SIZE) {							//1 + max interna->1+3=4
+				insertar(temp->getKey(), temp->getValue());				//3
 			}
-			delete temp;
-			nextIndex = (nextIndex + 1) % TABLE_SIZE;
+			delete temp;	
+			nextIndex = (nextIndex + 1) % TABLE_SIZE;			//3
 		}
-	}
+	}																				//TOTAL 7
 };
 #endif

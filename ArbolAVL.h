@@ -162,18 +162,18 @@ private:
 	}
 
 	Node<T>* _busqueda(Node<T>* nodo, function <bool(T)>condition) {
-		if (nodo == nullptr) return nullptr;
-		if (condition(nodo->elemento)) return nodo;
-		else if (condition(nodo->elemento)) { return _busqueda(nodo->izq, condition); }
-		else return _busqueda(nodo->der, condition);
-	}
+		if (nodo == nullptr) return nullptr;																				//1
+		if (condition(nodo->elemento)) return nodo;																//2
+		else if (condition(nodo->elemento)) { return _busqueda(nodo->izq, condition); }	//2
+		else return _busqueda(nodo->der, condition);															//2
+	}																																		//TOTAL: 1+2+2+2=7
 
-	void _AVLtreeToVector(Node<T>* node) {
-		if (node != nullptr) {
-			_AVLtreeToVector(node->izq);
-			AVLvec.push_back(node->elemento); 
-			_AVLtreeToVector(node->der);
-		}
+	void _AVLtreeToVector(Node<T>* node) {				
+		if (node != nullptr) {														//2 + MAX INTERNO->2 + 2 = 4
+			_AVLtreeToVector(node->izq);								   //1
+			AVLvec.push_back(node->elemento);					   // 2
+			_AVLtreeToVector(node->der);								   //1
+		}																					//TOTAL: 4
 	}
 	int _binSearch(Node<T>* nodo, T e) {
 		if (nodo == nullptr) {//sino se encuentra se devuelve -1
