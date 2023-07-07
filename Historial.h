@@ -16,17 +16,19 @@ public:
 		DataFrame file;
 		file.read_csv(filename);
 		//historial csv
+		string uuidCliente = cliente.getUUID();
 		int size = file.size();
 		for (int i = 0; i < size; i++) {
 			auto fila = file[i];
-			if (fila["client_uuid"] != cliente.getUUID()) continue;
-			std::string data[] = { fila["uuid"],
-				fila["client_uuid"],
-				fila["productos"],
-				fila["monto"],
-				fila["fecha"]
-			};
-			historial.push_back(Compra::load(productos, data));
+			cout << fila["client_uuid"] << endl;
+			//if (fila["client_uuid"].compare(uuidCliente) != 0) continue;
+			//std::string data[] = { fila["uuid"],
+			//	fila["client_uuid"],
+			//	fila["productos"],
+			//	fila["monto"],
+			//	fila["fecha"]
+			//};
+			//historial.push_back(Compra::load(productos, data));
 		}
 		return historial;
 	}

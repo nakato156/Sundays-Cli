@@ -5,6 +5,7 @@ void Vistas::ingresarReclamo(HANDLE hConsole) {
 	system("cls");
 	printColoredLine(hConsole, { {"Ingresar reclamo\n", 14} });
 	std::string reclamo;
+	cin.ignore();
 	//std::getline(std::cin, reclamo); no permite leer los datos ingresados por el ususario
 	cin >> reclamo;//bug en el getline , no funciona si le ponemos getline solo con el cin
 	Mensaje mensaje;
